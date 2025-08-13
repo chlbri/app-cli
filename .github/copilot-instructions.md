@@ -64,3 +64,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 BREAKING CHANGE:
 chlbri: bri_lvi@icloud.com
 ```
+
+## 8. Comments
+
+All comments must be in English.
