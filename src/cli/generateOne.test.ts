@@ -88,6 +88,7 @@ describe('generate command', () => {
 
     describe('#02.02 => With files exists', () => {
       describe('#02.02.01 => No strict mode', () => {
+        usePrepare();
         describe('#02.02.01.01 => One file', () => {
           const files = ['src/__tests__/fixtures/data/config3.machine.ts'];
           let watcheds: any;

@@ -12,7 +12,7 @@
 
 - Add the cli
 - CLI is tested
-- <u>Test coverage **_75.61%_**</u>, not matters
+- <u>Test coverage **_71.79%_**</u>, not matters
 
 </details>
 
