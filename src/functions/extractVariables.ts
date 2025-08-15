@@ -10,6 +10,19 @@ import { toSchema } from './toSchema';
 export const extractVariables = (filePath: string) => {
   const all = extractFromFile(PROJECT, filePath);
 
+  const hasImport = all.imports.some(
+    ({ moduleSpecifier, namedImports }) => {
+      return (
+        moduleSpecifier === '@bemedev/app-ts' &&
+        namedImports.includes('createMachine')
+      );
+    },
+  );
+
+  if (!hasImport) {
+    return console.warn('No relevant imports found.');
+  }
+
   const out = all.variables
     .filter(v => v.function === 'createMachine')
     .map(v => [v.name, toSchema(v.params[0])] as const);

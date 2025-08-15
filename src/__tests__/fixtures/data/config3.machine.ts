@@ -1,9 +1,7 @@
 import { createMachine, typings } from '@bemedev/app-ts';
-import { __tsSchemas } from './config3.machine.gen';
 
 export const config3 = createMachine(
   {
-    __tsSchema: __tsSchemas.config3,
     description: 'User authentication flow',
     machines: 'auth',
     initial: 'idle',

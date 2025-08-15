@@ -14,11 +14,6 @@ export const extractFromFile = (project: Project, filePath: string) => {
       namedImports: imp.getNamedImports().map(named => named.getName()),
     })),
 
-    exports: sourceFile.getExportDeclarations().map(exp => ({
-      moduleSpecifier: exp.getModuleSpecifierValue(),
-      namedExports: exp.getNamedExports().map(named => named.getName()),
-    })),
-
     types: sourceFile.getTypeAliases().map(type => ({
       name: type.getName(),
       typeParameters: type.getTypeParameters().map(tp => tp.getName()),
@@ -71,22 +66,5 @@ export const extractFromFile = (project: Project, filePath: string) => {
         // Flags du type
       };
     }),
-
-    interfaces: sourceFile.getInterfaces().map(int => ({
-      name: int.getName(),
-      properties: int.getProperties().map(prop => ({
-        name: prop.getName(),
-        type: prop.getTypeNodeOrThrow().getText(),
-      })),
-    })),
-
-    functions: sourceFile.getFunctions().map(func => ({
-      name: func.getName(),
-      parameters: func.getParameters().map(param => ({
-        name: param.getName(),
-        type: param.getTypeNode()?.getText(),
-      })),
-      returnType: func.getReturnTypeNode()?.getText(),
-    })),
   };
 };

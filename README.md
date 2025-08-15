@@ -4,79 +4,138 @@
 
 ## About
 
-This library provides a command-line interface (CLI) for the `&bemedev/app`
-library to enhance and generate more accurate TypeScript typings. It
-streamlines the extraction, generation, and integration of type definitions
-from `&bemedev/app` configurations and files, offering a better development
-experience (autocompletion, type checking, documentation).
+This library provides a command-line interface (CLI) for generating
+TypeScript typings from `@bemedev/app-ts` state machine configurations. It
+automatically extracts and generates type definitions from your machine
+files, offering a better development experience with improved
+autocompletion, type checking, and documentation.
 
 This README contains essential information for installing, using, and
-contributing to the project. All useful content is placed after the
-"License" section.
+contributing to the project.
 
 <br/>
 
 ## Features
 
-- Simple CLI to generate TypeScript typings from `&bemedev/app`
-  configuration files.
-- Automatic extraction of types from objects and configurations.
-- Options to customize input and output files, and to watch for changes.
-- Easy integration into CI/CD pipelines and npm/pnpm scripts.
+- **Automatic Type Generation**: Extracts TypeScript typings from
+  `.machine.ts` files that use `createMachine` from `@bemedev/app-ts`
+- **Watch Mode**: Monitors file changes and regenerates types automatically
+- **Flexible File Selection**: Generate types for specific files or use
+  glob patterns
+- **Strict Mode**: Ensures all files follow the `.machine.ts` naming
+  convention
+- **Easy Integration**: Simple CLI commands that work with any Node.js
+  project
 
 <br/>
 
 ## Installation
 
-Use pnpm (recommended) or npm/yarn depending on your project:
-
-- With pnpm (in the project directory using `&bemedev/app`):
+Install as a development dependency in your project using
+`@bemedev/app-ts`:
 
 ```sh
-pnpm add -D @chlbri/app-cli
+pnpm add -D @bemedev/app-cli
 ```
+
+<br/>
+
+## Requirements
+
+- Node.js >= 22
+- Files must use `@bemedev/app-ts` with `createMachine` function
+- Machine files should follow the `.machine.ts` naming convention
 
 <br/>
 
 ## Usage (CLI)
 
-The CLI exposes the following main commands:
+The CLI provides two main commands:
 
-- `app-cli generate` — Generates typings from input files.
-- `app-cli validate` — Checks that existing typings match the sources.
-- `app-cli watch` — Watches source files and regenerates automatically.
+### `app-typings generate`
 
-Common options:
-
-- `--input, -i`: input file or folder path (e.g., `src/configs`).
-- `--output, -o`: output file for generated typings (e.g.,
-  `types/app-config.d.ts`).
-- `--config, -c`: path to a custom JSON/TS config file.
-- `--watch, -w`: enables watch mode for automatic regeneration.
-- `--help, -h`: displays help.
-
-Examples:
-
-- Generate typings from `src` to `types/app.d.ts`:
+Generates typings from all `.machine.ts` files in your project:
 
 ```sh
-app-cli generate -i src -o types/app.d.ts
+app-typings generate
 ```
 
-- Run in watch mode:
+**Options:**
+
+- `--watch, -w`: Watch for file changes and regenerate automatically
+- `--help, -h`: Show help information
+
+**Aliases:** `gen`
+
+**Examples:**
 
 ```sh
-app-cli watch -i src -o types/app.d.ts
+# Generate types once
+app-typings generate
+
+# Generate types and watch for changes
+app-typings generate --watch
+
+# Using alias
+app-typings gen -w
 ```
 
-## Integration in npm/pnpm script
+### `app-typings generateOne`
 
-Add a script in your `package.json`:
+Generates typings for specific files:
+
+```sh
+app-typings generateOne file1.machine.ts file2.machine.ts
+```
+
+**Options:**
+
+- `--watch, -w`: Watch specified files for changes
+- `--strict, -s`: Enable strict mode (all files must end with
+  `.machine.ts`)
+- `--help, -h`: Show help information
+
+**Aliases:** `genOne`, `genO`
+
+**Examples:**
+
+```sh
+# Generate types for specific files
+app-typings generateOne src/user.machine.ts src/auth.machine.ts
+
+# Watch specific files
+app-typings generateOne src/user.machine.ts --watch
+
+# Strict mode - ensures all files follow naming convention (Regex : "**/*.machine.ts")
+app-typings generateOne src/user.machine.ts --strict
+```
+
+<br/>
+
+## File Structure
+
+The CLI looks for files with the following pattern:
+
+- `**/*.machine.ts` - TypeScript machine files
+- `**/*.machine.tsx` - TypeScript React machine files
+
+Generated files will have the `.gen.ts` extension:
+
+- `user.machine.ts` → `user.machine.gen.ts`
+- `auth.machine.ts` → `auth.machine.gen.ts`
+
+<br/>
+
+## Integration with npm/pnpm Scripts
+
+Add scripts to your `package.json`:
 
 ```json
 {
   "scripts": {
-    "typings:generate": "app-typings generate -i src -o types/app.d.ts"
+    "types:generate": "app-typings generate",
+    "types:watch": "app-typings generate --watch",
+    "types:build": "app-typings generateOne src/**/*.machine.ts"
   }
 }
 ```
@@ -84,39 +143,19 @@ Add a script in your `package.json`:
 Then run:
 
 ```sh
-pnpm run typings:generate
+pnpm run types:generate
+pnpm run types:watch
 ```
 
 <br/>
 
-## Configuration
+## Environment Variables
 
-An optional configuration file (e.g., `.app-typingsrc.json` or
-`.app-typingsrc.js`) can include:
+You can configure the CLI using environment variables:
 
-- `input`: input path
-- `output`: output path
-- `watch`: boolean
-- `ignore`: patterns to ignore
-
-Minimal example:
-
-```json
-{
-  "input": "src",
-  "output": "types/app.d.ts",
-  "watch": false
-}
-```
-
-<br/>
-
-## Best Practices
-
-- Commit the generated `types/*.d.ts` file to ensure build stability and
-  reproducibility.
-- Use the `validate` command in your CI pipelines to detect drifts between
-  source and typings.
+- `APP_TYPINGS_WATCH`: Enable watch mode for `generate` command
+- `APP_TYPINGS_WATCH_ONE`: Enable watch mode for `generateOne` command
+- `APP_TYPINGS_STRICT_ONE`: Enable strict mode for `generateOne` command
 
 <br/>
 
