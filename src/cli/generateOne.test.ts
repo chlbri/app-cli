@@ -3,7 +3,7 @@ import { run } from 'cmd-ts';
 import { usePrepare } from '../__tests__/fixtures/hooks';
 import { generateOne } from './generateOne';
 
-describe('generate command', () => {
+describe('generateOne command', () => {
   const spy = vi.spyOn(console, 'warn');
 
   describe('#01 => No files', () => {
