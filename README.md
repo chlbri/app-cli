@@ -143,7 +143,7 @@ Quick guide:
 ## CHANGE_LOG
 
 See the full changelog:  
-https://github.com/chlbri/app-typings/blob/main/CHANGELOG.md
+https://github.com/chlbri/app-cli/blob/main/CHANGELOG.md
 
 <br/>
 

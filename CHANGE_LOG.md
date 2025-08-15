@@ -3,9 +3,20 @@
 <br/>
 <br/>
 
-### Version [0.0.1] --> _date & hour_
+<details>
+<summary>
 
-- ✨ Première version de la bibliothèque
+## **[0.0.1] - 2025/08/15** => _01:10_
+
+</summary>
+
+- Initial release
+- No CLI right now, just functions
+- <u>Test coverage **_67%_**</u>, not matters
+
+</details>
+
+<br/>
 
 <br/>
 
