@@ -1,3 +1,6 @@
+import { watch } from 'chokidar';
+import { generateOne } from '../functions';
+
 export const start = () => {
   const STARS = '*'.repeat(36);
   const TIRETS = '-'.repeat(36);
@@ -13,4 +16,21 @@ export const start = () => {
   console.log();
   console.log(TIRETS);
   console.log();
+};
+
+export const watcher = (persistent: boolean, ...files: string[]) => {
+  const watcher = watch(files, {
+    cwd: process.cwd(),
+    persistent,
+  })
+    .once('add', start)
+    .on('all', (_, file) => generateOne(file))
+    .on('add', file => console.log(`File added: ${file}`))
+    .on('change', file => console.log(`File changed: ${file}`))
+    .on('unlink', file => {
+      console.log(`File removed: ${file}`);
+      watcher.unwatch(file);
+    });
+
+  return watcher;
 };

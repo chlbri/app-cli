@@ -1,4 +1,5 @@
-import { glob } from 'node:fs/promises';
+// import { glob } from 'node:fs/promises';
+import { globSync } from 'glob';
 import { MATCHES } from '../constants';
 import { extractVariables } from './extractVariables';
 import { withoutExtension } from './helpers';
@@ -18,12 +19,7 @@ export const generateOne = (filePath: string) => {
 };
 
 export const generate = async () => {
-  const GLOB = await Array.fromAsync(glob(MATCHES));
+  const GLOB = globSync(MATCHES, { cwd: process.cwd() });
 
-  const all = GLOB.map(file => {
-    const out = () => generateOne(file);
-    return out;
-  });
-
-  return Promise.all(all.map(fn => fn()));
+  return GLOB.forEach(generateOne);
 };

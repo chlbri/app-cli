@@ -11,6 +11,8 @@ export const config1 = createMachine(
         },
       },
 
+      didi: {},
+
       working: {
         type: 'parallel',
         activities: {

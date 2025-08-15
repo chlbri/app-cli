@@ -6,6 +6,20 @@
 <details>
 <summary>
 
+## **[0.1.2] - 2025/08/15** => _22:40_
+
+</summary>
+
+- Fix watcher
+- <u>Test coverage **_74.04%_**</u>, not matters
+
+</details>
+
+<br/>
+
+<details>
+<summary>
+
 ## **[0.1.1] - 2025/08/15** => _21:45_
 
 </summary>

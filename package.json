@@ -1,6 +1,6 @@
 {
   "name": "@bemedev/app-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CLI for generating TypeScript typings for lib @bemedev/app-ts",
   "bin": {
     "app-typings": "lib/cli/index.js"
@@ -59,6 +59,8 @@
     "lint:watch": "onchange --await-write-finish 5500 \"**/*\" -- pnpm run lint",
     "prepublishOnly": "",
     "prepare": "husky",
+    "add:tarball": "build-tests pre",
+    "preview": "pnpm run build && pnpm run add:tarball && app-typings generate -w",
     "pretest": "pnpm run build",
     "posttest": "pnpm run size",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
@@ -127,6 +129,7 @@
     "@bemedev/decompose": "^1.3.1",
     "chokidar": "^4.0.3",
     "cmd-ts": "^0.13.0",
+    "glob": "^11.0.3",
     "node-watch": "^0.7.4",
     "ts-morph": "^26.0.0"
   }
