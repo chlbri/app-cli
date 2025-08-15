@@ -13,6 +13,7 @@ export default defineConfig({
     maxConcurrency: 10,
     passWithNoTests: true,
     slowTestThreshold: 3000,
+    fileParallelism: false,
     globals: true,
     logHeapUsage: true,
     coverage: {

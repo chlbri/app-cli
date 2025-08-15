@@ -1,9 +1,7 @@
 import { createMachine, typings } from '@bemedev/app-ts';
-import { __tsSchemas } from './config1.machine.gen';
 
 export const config1 = createMachine(
   {
-    __tsSchema: __tsSchemas.config1,
     machines: 'machine1',
     initial: 'idle',
     states: {

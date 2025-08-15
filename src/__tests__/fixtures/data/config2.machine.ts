@@ -1,9 +1,7 @@
 import { createMachine, typings } from '@bemedev/app-ts';
-import { __tsSchemas } from './config2.machine.gen';
 
 export const config2 = createMachine(
   {
-    __tsSchema: __tsSchemas.config2,
     description: 'Simple traffic light state machine',
     machines: 'trafficLight',
 
