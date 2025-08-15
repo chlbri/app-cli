@@ -143,7 +143,7 @@ Quick guide:
 ## CHANGE_LOG
 
 See the full changelog:  
-https://github.com/chlbri/app-cli/blob/main/CHANGE_LOG.md
+[CHANGE_LOG](https://github.com/chlbri/app-cli/blob/main/CHANGE_LOG.md)
 
 <br/>
 
