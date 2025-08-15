@@ -1,6 +1,6 @@
 {
   "name": "@bemedev/app-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI for generating TypeScript typings for lib @bemedev/app-ts",
   "author": {
     "email": "bri_lvi@icloud.com",

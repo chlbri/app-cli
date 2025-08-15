@@ -1,4 +1,4 @@
-# @bemedev/app-typings
+# @bemedev/app-cli
 
 ---
 
@@ -33,7 +33,7 @@ Use pnpm (recommended) or npm/yarn depending on your project:
 - With pnpm (in the project directory using `&bemedev/app`):
 
 ```sh
-pnpm add -D @chlbri/app-typings
+pnpm add -D @chlbri/app-cli
 ```
 
 <br/>
@@ -42,9 +42,9 @@ pnpm add -D @chlbri/app-typings
 
 The CLI exposes the following main commands:
 
-- `app-typings generate` — Generates typings from input files.
-- `app-typings validate` — Checks that existing typings match the sources.
-- `app-typings watch` — Watches source files and regenerates automatically.
+- `app-cli generate` — Generates typings from input files.
+- `app-cli validate` — Checks that existing typings match the sources.
+- `app-cli watch` — Watches source files and regenerates automatically.
 
 Common options:
 
@@ -60,19 +60,19 @@ Examples:
 - Generate typings from `src` to `types/app.d.ts`:
 
 ```sh
-app-typings generate -i src -o types/app.d.ts
+app-cli generate -i src -o types/app.d.ts
 ```
 
 - Run in watch mode:
 
 ```sh
-app-typings watch -i src -o types/app.d.ts
+app-cli watch -i src -o types/app.d.ts
 ```
 
 - Use a custom config file:
 
 ```sh
-app-typings generate -c .app-typingsrc.json
+app-cli generate -c .app-typingsrc.json
 ```
 
 <br/>
