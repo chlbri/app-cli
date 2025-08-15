@@ -1,19 +1,11 @@
-/**
- * Transforms an array of literals (string, number, boolean) into a TypeScript union string representation.
- * Example: ['a', 'b', 1, true] => "'a' | 'b' | 1 | true"
- */
-export function arrayToUnionString(
-  ...arr: Array<string | number | boolean>
-): string {
-  return arr
-    .map(v =>
-      typeof v === 'string'
-        ? `'${v}'`
-        : typeof v === 'boolean'
-          ? v
-            ? 'true'
-            : 'false'
-          : v,
-    )
-    .join(' | ');
-}
+import { extname } from 'node:path';
+
+export const withoutExtension = (_file: string) => {
+  const extension = extname(_file);
+  const file = _file.slice(0, _file.length - extension.length);
+
+  return {
+    file,
+    extension,
+  };
+};
