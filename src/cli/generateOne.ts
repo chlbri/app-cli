@@ -1,8 +1,6 @@
-import { watch } from 'chokidar';
 import { command, flag, restPositionals, string } from 'cmd-ts';
 import { glob } from 'node:fs/promises';
-import { generateOne as generate } from '../functions/generate';
-import { start } from './helpers';
+import { watcher } from './helpers';
 
 export const generateOne = command({
   name: 'generateOne',
@@ -33,9 +31,7 @@ export const generateOne = command({
     const isEmpty = files.length === 0;
     if (isEmpty) return console.warn('No files specified for generation.');
 
-    const FILES = await Array.fromAsync(
-      glob(files, { cwd: process.cwd() }),
-    );
+    const FILES = await Array.fromAsync(glob(files));
 
     if (FILES.length === 0) return console.warn('Files not found');
 
@@ -49,21 +45,6 @@ export const generateOne = command({
       );
     }
 
-    const watcher = watch(FILES, {
-      cwd: process.cwd(),
-      persistent,
-    })
-      .on('all', async (_, file) => {
-        await generate(file);
-      })
-      .once('add', start)
-      .on('add', file => console.log(`File added: ${file}`))
-      .on('change', file => console.log(`File changed: ${file}`))
-      .on('unlink', file => {
-        console.log(`File removed: ${file}`);
-        watcher.unwatch(file);
-      });
-
-    return watcher;
+    return watcher(persistent, ...FILES);
   },
 });

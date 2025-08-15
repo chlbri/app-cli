@@ -8,7 +8,7 @@ export const extractFromFile = (project: Project, filePath: string) => {
 
   // Fonction pour résoudre récursivement les types importés en utilisant l'API du compilateur
 
-  return {
+  const out = {
     imports: sourceFile.getImportDeclarations().map(imp => ({
       moduleSpecifier: imp.getModuleSpecifierValue(),
       namedImports: imp.getNamedImports().map(named => named.getName()),
@@ -67,4 +67,8 @@ export const extractFromFile = (project: Project, filePath: string) => {
       };
     }),
   };
+
+  project.removeSourceFile(sourceFile);
+
+  return out;
 };

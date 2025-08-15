@@ -1,6 +1,7 @@
 import sleep from '@bemedev/sleep';
 import { run } from 'cmd-ts';
 import { usePrepare } from '../__tests__/fixtures/hooks';
+import { cli } from './cli';
 import { generateOne } from './generateOne';
 
 describe('generateOne command', () => {
@@ -28,7 +29,9 @@ describe('generateOne command', () => {
 
     describe('#01.02 => Watch', () => {
       it('#01.02.01 => Result is undefined', async () => {
-        const result = await run(generateOne, ['--watch']);
+        const result = await (
+          await run(cli, ['generateOne', '--watch'])
+        ).value;
         expect(result).toBeUndefined();
       });
 
