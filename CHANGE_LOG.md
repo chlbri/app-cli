@@ -6,6 +6,20 @@
 <details>
 <summary>
 
+## **[0.1.1] - 2025/08/15** => _21:45_
+
+</summary>
+
+- Improve CLI speed
+- <u>Test coverage **_71.79%_**</u>, not matters
+
+</details>
+
+<br/>
+
+<details>
+<summary>
+
 ## **[0.1.0] - 2025/08/15** => _01:10_
 
 </summary>

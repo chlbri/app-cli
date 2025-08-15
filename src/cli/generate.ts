@@ -28,7 +28,9 @@ export const generate = command({
       },
       persistent,
     })
-      .on('all', (_, file) => generateOne(file))
+      .on('all', async (_, file) => {
+        await generateOne(file);
+      })
       .once('add', start)
       .on('add', file => console.log(`File added: ${file}`))
       .on('change', file => console.log(`File changed: ${file}`))

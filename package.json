@@ -1,6 +1,6 @@
 {
   "name": "@bemedev/app-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for generating TypeScript typings for lib @bemedev/app-ts",
   "bin": {
     "app-typings": "lib/cli/index.js"

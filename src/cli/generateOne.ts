@@ -51,15 +51,11 @@ export const generateOne = command({
 
     const watcher = watch(FILES, {
       cwd: process.cwd(),
-
-      awaitWriteFinish: {
-        stabilityThreshold: 200,
-        pollInterval: 100,
-      },
-
       persistent,
     })
-      .on('all', (_, file) => generate(file))
+      .on('all', async (_, file) => {
+        await generate(file);
+      })
       .once('add', start)
       .on('add', file => console.log(`File added: ${file}`))
       .on('change', file => console.log(`File changed: ${file}`))
