@@ -69,14 +69,6 @@ app-cli generate -i src -o types/app.d.ts
 app-cli watch -i src -o types/app.d.ts
 ```
 
-- Use a custom config file:
-
-```sh
-app-cli generate -c .app-typingsrc.json
-```
-
-<br/>
-
 ## Integration in npm/pnpm script
 
 Add a script in your `package.json`:
