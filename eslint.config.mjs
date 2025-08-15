@@ -23,6 +23,7 @@ export default [
       '**/lib',
       '**/publish_npm',
       '**/*.typegen.ts',
+      '**/*.gen.ts',
     ],
   },
   ...compat.extends(
