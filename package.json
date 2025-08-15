@@ -1,7 +1,7 @@
 {
   "name": "@bemedev/app-typings",
   "version": "0.0.1",
-  "description": "//TODO",
+  "description": "CLI for generating TypeScript typings for lib @bemedev/app-ts",
   "author": {
     "email": "bri_lvi@icloud.com",
     "name": "chlbri",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "//TODO"
+    "url": "https://github.com/chlbri/app-typings.git"
   },
   "license": "MIT",
   "type": "module",
@@ -31,7 +31,11 @@
     }
   ],
   "keywords": [
-    "//TODO"
+    "@bemedev/app-ts",
+    "types",
+    "typings",
+    "state machines",
+    "cli"
   ],
   "files": [
     "lib",
