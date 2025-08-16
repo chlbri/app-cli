@@ -28,8 +28,8 @@ importers:
         version: 26.0.0
     devDependencies:
       '@bemedev/app-ts':
-        specifier: ^0.9.15
-        version: 0.9.15(vitest@3.2.4(@types/node@24.3.0)(jiti@2.5.1))
+        specifier: ^0.9.20
+        version: 0.9.20(vitest@3.2.4(@types/node@24.3.0)(jiti@2.5.1))
       '@bemedev/build-tests':
         specifier: ^0.1.2
         version: 0.1.2(vitest@3.2.4(@types/node@24.3.0)(jiti@2.5.1))
@@ -142,8 +142,8 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@bemedev/app-ts@0.9.15':
-    resolution: {integrity: sha512-Aufeka9feRT40Yr+LrdBvY52iViHBMdXoTbk89zz4E/imBL0XUHfjhKdAl918u33LenbDCnmwO2Ufn/KUk2WIw==}
+  '@bemedev/app-ts@0.9.20':
+    resolution: {integrity: sha512-uEkesY83R2BweY7Z3zI0Yfdi7zdzY5g80sFfW65d61ctJD5gU3qd11vq0IJEJp9DdD5vLuTiv7HkdqVmFreMgQ==}
     engines: {node: '>=22'}
 
   '@bemedev/basifun@0.5.2':
@@ -1780,7 +1780,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@bemedev/app-ts@0.9.15(vitest@3.2.4(@types/node@24.3.0)(jiti@2.5.1))':
+  '@bemedev/app-ts@0.9.20(vitest@3.2.4(@types/node@24.3.0)(jiti@2.5.1))':
     dependencies:
       '@bemedev/basifun': 0.5.2(@bemedev/types@0.4.2)
       '@bemedev/boolean-recursive': 0.0.3
