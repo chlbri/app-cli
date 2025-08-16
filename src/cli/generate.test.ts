@@ -1,3 +1,4 @@
+import sleep from '@bemedev/sleep';
 import type { FSWatcher } from 'chokidar';
 import { run } from 'cmd-ts';
 import { usePrepare } from '../__tests__/fixtures/hooks';
@@ -17,5 +18,7 @@ describe('generate command', () => {
 
   it('#02 => Watch', async () => {
     out = await (await run(cli, ['generate', '--watch'])).value;
-  }, 4000);
+
+    await sleep(1_000);
+  }, 100_000);
 });

@@ -6,6 +6,23 @@
 <details>
 <summary>
 
+## **[0.1.3] - 2025/08/16** => _06:25_
+
+</summary>
+
+- Improve watcher
+- Improve npm scripts
+- Improve CI
+- Add TODOs
+- <u>Test coverage **_74.04%_**</u>, not matters
+
+</details>
+
+<br/>
+
+<details>
+<summary>
+
 ## **[0.1.2] - 2025/08/15** => _22:40_
 
 </summary>
