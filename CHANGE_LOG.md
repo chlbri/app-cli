@@ -6,6 +6,17 @@
 <details>
 <summary>
 
+## **[0.1.4] - 2025/08/16** => _06:25_
+
+</summary>
+
+- Upgrade deps
+- <u>Test coverage **_74.04%_**</u>, not matters
+
+</details>
+
+<br/>
+
 ## **[0.1.3] - 2025/08/16** => _06:25_
 
 </summary>
