@@ -1,11 +1,9 @@
 // import { glob } from 'node:fs/promises';
-import { globSync } from 'glob';
-import { MATCHES } from '../constants';
 import { extractVariables } from './extractVariables';
 import { withoutExtension } from './helpers';
 import { writeGen } from './writeGen';
 
-export const generateOne = (filePath: string) => {
+export const generate = (filePath: string) => {
   const variables = extractVariables(filePath);
 
   if (!variables) {
@@ -16,10 +14,4 @@ export const generateOne = (filePath: string) => {
   const fileToGen = `${file}.gen${extension}`;
 
   return writeGen(fileToGen, variables);
-};
-
-export const generate = async () => {
-  const GLOB = globSync(MATCHES, { cwd: process.cwd() });
-
-  return GLOB.forEach(generateOne);
 };

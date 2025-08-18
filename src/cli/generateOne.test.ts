@@ -101,7 +101,7 @@ describe('generateOne command', () => {
               const result = await run(generateOne, files);
               expect(result).toBeDefined();
               if (result) {
-                await sleep(200);
+                await sleep(2000);
                 watcheds = result.getWatched();
                 result.close();
               }
@@ -147,7 +147,7 @@ describe('generateOne command', () => {
               const result = await run(generateOne, files);
               expect(result).toBeDefined();
               if (result) {
-                await sleep(200);
+                await sleep(2000);
                 watcheds = result.getWatched();
                 result.close();
               }
