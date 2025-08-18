@@ -4,15 +4,14 @@ import { exec, ShellString } from 'shelljs';
 import { BIN, DESCRIPTION } from '../constants';
 import { usePrepare } from './fixtures/hooks';
 
+const timeout = 100_000;
 describe('Tests the generated bin', () => {
   usePrepare();
 
   const COMMAND = `pnpm ${BIN}`;
 
-  beforeAll(addTarball);
-  afterAll(cleanup);
-
-  const timeout = 10_000;
+  beforeAll(addTarball, timeout);
+  afterAll(cleanup, timeout);
 
   describe('#01 => Help command', () => {
     describe('#01.01 => Main', () => {
@@ -250,6 +249,6 @@ describe('Tests the generated bin', () => {
 });
 
 describe('#debug', () => {
-  it('Add Tarball', addTarball);
-  it('Cleanup', cleanup);
+  it('Add Tarball', addTarball, timeout);
+  it('Cleanup', cleanup, timeout);
 });

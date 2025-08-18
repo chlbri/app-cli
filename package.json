@@ -67,8 +67,8 @@
     "p-q": "pretty-quick",
     "rinit": "pnpm run rm && pnpm run config",
     "rinit:off": "pnpm run rm && pnpm run config:off",
-    "rm": "pnpx rimraf snode_modules pnpm-lock.yaml",
-    "rm:lib": "pnpx rimraf -- lib",
+    "rm": "pnpx rimraf node_modules pnpm-lock.yaml",
+    "rm:lib": "pnpx rimraf lib",
     "rollup": "rollup -c",
     "size": "size-limit",
     "test": "pnpm run test:coverage --no-coverage",
@@ -88,7 +88,7 @@
     }
   ],
   "devDependencies": {
-    "@bemedev/app-ts": "^0.9.20",
+    "@bemedev/app-ts": "^0.9.21",
     "@bemedev/build-tests": "^0.1.2",
     "@bemedev/fsf": "^0.8.0",
     "@bemedev/rollup-config": "^0.1.8",

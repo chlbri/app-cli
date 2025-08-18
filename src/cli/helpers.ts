@@ -1,5 +1,5 @@
 import { watch } from 'chokidar';
-import { generateOne } from '../functions';
+import { generate } from '../functions';
 
 export const start = () => {
   const STARS = '*'.repeat(36);
@@ -24,7 +24,7 @@ export const watcher = (persistent: boolean, ...files: string[]) => {
     persistent,
   })
     .once('add', start)
-    .on('all', (_, file) => generateOne(file))
+    .on('all', (_, file) => generate(file))
     .on('add', file => console.log(`File added: ${file}`))
     .on('change', file => console.log(`File changed: ${file}`))
     .on('unlink', file => {

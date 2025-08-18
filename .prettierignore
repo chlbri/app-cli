@@ -2,4 +2,3 @@
 node_modules
 publish
 publish_npm
-**/*.gen.ts

@@ -1,2 +1,2 @@
-export { generate, generateOne } from './generate';
+export * from './generate';
 export * from './helpers';

@@ -9,6 +9,9 @@ export const config1 = createMachine(
         activities: {
           DELAY: 'inc',
         },
+        on: {
+          FLY: '/working',
+        },
       },
 
       didi: {},
@@ -57,5 +60,9 @@ export const config1 = createMachine(
       final: {},
     },
   },
-  typings({}),
+  typings({
+    eventsMap: {
+      FLY: 'primitive',
+    },
+  }),
 );
