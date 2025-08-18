@@ -85,7 +85,8 @@ export const extractVariables = (filePath: string) => {
   const schemas = [
     `/**
    * 
-   * Constants as type helpers for the concerned file.
+   * Constants as type helpers for the concerned file. 
+   * Don't use it as values, just for typings
    * 
    * ### Author
    * 
@@ -100,20 +101,19 @@ export const extractVariables = (filePath: string) => {
    * Link to machine lib [here](https://www.npmjs.com/package/@bemedev/app-ts).
    * 
    * Link to this lib [here](https://www.npmjs.com/package/@bemedev/app-cli)
-   *
    * 
-   * This file is auto-generated. Do not edit manually.
+   * NB: This file is auto-generated. Do not edit manually.
    */
-    export const SCHEMAS = {} as {`,
+    export const SCHEMAS = {`,
     ...variables4.map(v => {
       const obj = v.params[0];
       const paths = extractAllPaths(obj);
       const variable = v.name;
       const str = generateTypesString(obj, paths, variable);
 
-      const out = `readonly ${variable} : {
-        __tsSchema : ${str};
-      };`;
+      const out = `${variable}: {
+        __tsSchema: undefined as unknown as ${str},
+      },`;
       return out;
     }),
     `}`,

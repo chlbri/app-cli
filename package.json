@@ -1,6 +1,6 @@
 {
   "name": "@bemedev/app-cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "CLI for generating TypeScript typings for lib @bemedev/app-ts",
   "bin": {
     "app-typings": "lib/cli/index.js"
@@ -67,8 +67,9 @@
     "p-q": "pretty-quick",
     "rinit": "pnpm run rm && pnpm run config",
     "rinit:off": "pnpm run rm && pnpm run config:off",
-    "rm": "pnpx rimraf node_modules pnpm-lock.yaml",
-    "rm:lib": "pnpx rimraf lib",
+    "rimraf": "pnpx rimraf -rf",
+    "rm": "pnpm run rimraf node_modules pnpm-lock.yaml",
+    "rm:lib": "pnpm run rimraf lib",
     "rollup": "rollup -c",
     "size": "size-limit",
     "test": "pnpm run test:coverage --no-coverage",
