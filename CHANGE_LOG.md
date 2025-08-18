@@ -6,6 +6,21 @@
 <details>
 <summary>
 
+## **[0.1.5] - 2025/08/18** => _00:10_
+
+</summary>
+
+- Upgrade deps
+- Improve generation
+- <u>Test coverage **_74.04%_**</u>, not matters
+
+</details>
+
+<br/>
+
+<details>
+<summary>
+
 ## **[0.1.4] - 2025/08/16** => _06:25_
 
 </summary>
