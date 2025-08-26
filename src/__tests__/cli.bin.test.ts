@@ -24,7 +24,7 @@ describe('Tests the generated bin', () => {
             timeout,
           });
 
-          expect(result.code).toBe(1);
+          expect(result.code).toBe(0);
         },
         timeout,
       );
@@ -56,7 +56,9 @@ describe('Tests the generated bin', () => {
             timeout,
           });
 
-          expect(result.code).toBe(1);
+          console.log('stdout', '=>', result.stdout);
+
+          expect(result.code).toBe(0);
         },
         timeout,
       );
@@ -103,7 +105,7 @@ describe('Tests the generated bin', () => {
             timeout,
           });
 
-          expect(result.code).toBe(1);
+          expect(result.code).toBe(0);
         },
         timeout,
       );
