@@ -190,7 +190,7 @@ chlbri (bri_lvi@icloud.com)
 
 ## Links
 
-- Documentation: https://github.com/chlbri/new-package
+- Documentation: https://github.com/chlbri/app-cli.git
 
 <br/>
 
