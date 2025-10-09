@@ -29,11 +29,11 @@ jobs:
       - name: lint
         run: pnpm run lint
 
-      - name: build
+      - name: Build
         run: pnpm run build
 
       - name: Test
         run: pnpm run test:only
 
-      - name: size
-        run: pnpm run size
+      - name: Cleanup
+        run: pnpm run posttest
