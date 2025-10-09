@@ -3,7 +3,7 @@ import { createMachine, typings } from '@bemedev/app-ts';
 export const config2 = createMachine(
   {
     description: 'Simple traffic light state machine',
-    machines: 'trafficLight',
+    machines: { mach1: 'trafficLight' },
 
     initial: 'red',
     states: {

@@ -3,7 +3,7 @@ import { createMachine, typings } from '@bemedev/app-ts';
 export const config3 = createMachine(
   {
     description: 'User authentication flow',
-    machines: 'auth',
+    machines: { auth: 'auth' },
     initial: 'idle',
     states: {
       idle: {

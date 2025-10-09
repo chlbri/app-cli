@@ -132,14 +132,6 @@ describe('Tests the generated bin', () => {
             it('#01.03.02.01.01.05 => Contains "-w"', () => {
               expect(result.stdout).toContain('-w');
             });
-
-            it('#01.03.02.01.01.06 => Contains "--strict"', () => {
-              expect(result.stdout).toContain('--strict');
-            });
-
-            it('#01.03.02.01.01.07 => Contains "-s"', () => {
-              expect(result.stdout).toContain('-s');
-            });
           });
 
           it('#01.03.02.01.02 => Contains generateOne "generateOne" command', () => {

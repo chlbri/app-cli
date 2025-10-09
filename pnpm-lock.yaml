@@ -9,110 +9,125 @@ importers:
   .:
     dependencies:
       '@bemedev/decompose':
-        specifier: ^1.3.1
+        specifier: 1.3.1
         version: 1.3.1(@bemedev/types@0.4.2)(vitest@3.2.4(@types/node@24.7.0)(jiti@2.6.1))
+      acorn:
+        specifier: 8.15.0
+        version: 8.15.0
       chokidar:
-        specifier: ^4.0.3
+        specifier: 4.0.3
         version: 4.0.3
       cmd-ts:
-        specifier: ^0.14.2
+        specifier: 0.14.2
         version: 0.14.2
       glob:
-        specifier: ^11.0.3
+        specifier: 11.0.3
         version: 11.0.3
+      jiti:
+        specifier: 2.6.1
+        version: 2.6.1
       node-watch:
-        specifier: ^0.7.4
+        specifier: 0.7.4
         version: 0.7.4
+      picomatch:
+        specifier: 4.0.3
+        version: 4.0.3
       ts-morph:
-        specifier: ^27.0.0
+        specifier: 27.0.0
         version: 27.0.0
+      valibot:
+        specifier: 1.1.0
+        version: 1.1.0(typescript@5.9.3)
+      vite:
+        specifier: 7.1.9
+        version: 7.1.9(@types/node@24.7.0)(jiti@2.6.1)
     devDependencies:
       '@bemedev/app-ts':
-        specifier: ^1.2.2
+        specifier: 1.2.2
         version: 1.2.2(@bemedev/types@0.4.2)(vitest@3.2.4(@types/node@24.7.0)(jiti@2.6.1))
       '@bemedev/build-tests':
-        specifier: ^0.1.2
+        specifier: 0.1.2
         version: 0.1.2(vitest@3.2.4(@types/node@24.7.0)(jiti@2.6.1))
       '@bemedev/fsf':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: 1.0.1
+        version: 1.0.1
       '@bemedev/rollup-config':
-        specifier: ^0.2.2
+        specifier: 0.2.2
         version: 0.2.2(glob@11.0.3)(rollup@4.52.4)(typescript@5.9.3)
       '@bemedev/sleep':
-        specifier: ^0.1.2
+        specifier: 0.1.2
         version: 0.1.2
       '@bemedev/types':
-        specifier: ^0.4.2
+        specifier: 0.4.2
         version: 0.4.2
       '@bemedev/vitest-alias':
-        specifier: ^0.0.3
+        specifier: 0.0.3
         version: 0.0.3(vitest@3.2.4(@types/node@24.7.0)(jiti@2.6.1))
       '@bemedev/vitest-exclude':
-        specifier: ^0.1.1
+        specifier: 0.1.1
         version: 0.1.1(glob@11.0.3)(vitest@3.2.4(@types/node@24.7.0)(jiti@2.6.1))
       '@bemedev/vitest-extended':
-        specifier: ^1.5.3
+        specifier: 1.5.3
         version: 1.5.3(vitest@3.2.4(@types/node@24.7.0)(jiti@2.6.1))
       '@eslint/eslintrc':
-        specifier: ^3.3.1
+        specifier: 3.3.1
         version: 3.3.1
       '@eslint/js':
-        specifier: ^9.37.0
+        specifier: 9.37.0
         version: 9.37.0
       '@size-limit/file':
-        specifier: ^11.2.0
+        specifier: 11.2.0
         version: 11.2.0(size-limit@11.2.0)
       '@types/node':
-        specifier: ^24.7.0
+        specifier: 24.7.0
         version: 24.7.0
       '@types/picomatch':
-        specifier: ^4.0.2
+        specifier: 4.0.2
         version: 4.0.2
       '@types/shelljs':
-        specifier: ^0.8.17
+        specifier: 0.8.17
         version: 0.8.17
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.46.0
+        specifier: 8.46.0
         version: 8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/parser':
-        specifier: ^8.46.0
+        specifier: 8.46.0
         version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
       '@vitest/coverage-v8':
-        specifier: ^3.2.4
+        specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4(@types/node@24.7.0)(jiti@2.6.1))
       eslint:
-        specifier: ^9.37.0
+        specifier: 9.37.0
         version: 9.37.0(jiti@2.6.1)
       globals:
-        specifier: ^16.4.0
+        specifier: 16.4.0
         version: 16.4.0
       husky:
-        specifier: ^9.1.7
+        specifier: 9.1.7
         version: 9.1.7
       prettier:
-        specifier: ^3.6.2
+        specifier: 3.6.2
         version: 3.6.2
       pretty-quick:
-        specifier: ^4.2.2
+        specifier: 4.2.2
         version: 4.2.2(prettier@3.6.2)
       rollup:
-        specifier: ^4.52.4
+        specifier: 4.52.4
         version: 4.52.4
       shelljs:
-        specifier: ^0.10.0
+        specifier: 0.10.0
         version: 0.10.0
       size-limit:
-        specifier: ^11.2.0
+        specifier: 11.2.0
         version: 11.2.0
       tslib:
-        specifier: ^2.8.1
+        specifier: 2.8.1
         version: 2.8.1
       typescript:
-        specifier: ^5.9.3
+        specifier: 5.9.3
         version: 5.9.3
       vitest:
-        specifier: ^3.2.4
+        specifier: 3.2.4
         version: 3.2.4(@types/node@24.7.0)(jiti@2.6.1)
 
 packages:
@@ -167,8 +182,8 @@ packages:
     peerDependencies:
       '@bemedev/types': 0.4.2
 
-  '@bemedev/fsf@1.0.0':
-    resolution: {integrity: sha512-jB4Msf1Oc3/JCbaiEAvCpmD/q5UOVQGAuHPf0Cv8ccZPCyhI+wrRPLgcxYDTy3djHGhMV30e+5bphK75APuq4w==}
+  '@bemedev/fsf@1.0.1':
+    resolution: {integrity: sha512-BM5/ZTuZsHEk7ESiaLYcIMNA2HtdJYHwqwgPtTFFvzLBvCfEJUZA7Hb/K68fOszN4wWsQL9u7M90dS0zQ0sLHg==}
 
   '@bemedev/interval2@0.1.3':
     resolution: {integrity: sha512-RWbferVoFH0CkpeNZ7DW2MFdl04clqp4Q9WaiQAqlW8kgsizQltXhy780QDtWkQi+cRLWZ9j/ItYcVJ1nr+vDQ==}
@@ -1660,6 +1675,14 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
+  valibot@1.1.0:
+    resolution: {integrity: sha512-Nk8lX30Qhu+9txPYTwM0cFlWLdPFsFr6LblzqIySfbZph9+BFsAHsNvHOymEviUepeIW6KFHzpX8TKhbptBXXw==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   vite-node@3.2.4:
     resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -1829,7 +1852,7 @@ snapshots:
       - supports-color
       - vitest
 
-  '@bemedev/fsf@1.0.0':
+  '@bemedev/fsf@1.0.1':
     dependencies:
       '@bemedev/x-guard': 0.2.0
       deepmerge: 4.3.1
@@ -3251,6 +3274,10 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  valibot@1.1.0(typescript@5.9.3):
+    optionalDependencies:
+      typescript: 5.9.3
 
   vite-node@3.2.4(@types/node@24.7.0)(jiti@2.6.1):
     dependencies:

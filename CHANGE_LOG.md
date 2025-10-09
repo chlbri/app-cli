@@ -17,6 +17,23 @@
 </details>
 
 <br/>
+
+<details>
+<summary>
+
+## **[0.2.0] - 2025/10/09** => _14:55_
+
+</summary>
+
+- Upgrade deps
+- Improve generation, not no error undefined
+- Add generation for lib `@bemedev/fsf` (`@bemedev/app-ts` +
+  `@bemedev/fsf`)
+
+</details>
+
+<br/>
+
 <details>
 <summary>
 

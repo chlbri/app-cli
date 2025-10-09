@@ -1,6 +1,5 @@
 import { command, flag } from 'cmd-ts';
-import { glob } from 'node:fs/promises';
-import { MATCHES } from '../constants';
+import { getFiles } from '../functions';
 import { watcher } from './helpers';
 
 export const generate = command({
@@ -15,9 +14,8 @@ export const generate = command({
       env: 'APP_TYPINGS_WATCH',
     }),
   },
-  handler: async ({ watch: persistent }) => {
-    const FILES = await Array.fromAsync(glob(MATCHES));
-
-    return watcher(persistent, ...FILES);
+  handler: async ({ watch }) => {
+    const FILES = await getFiles();
+    return watcher(watch, ...FILES);
   },
 });

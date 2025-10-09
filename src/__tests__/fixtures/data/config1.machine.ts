@@ -2,7 +2,7 @@ import { createMachine, typings } from '@bemedev/app-ts';
 
 export const config1 = createMachine(
   {
-    machines: 'machine1',
+    machines: { plane: 'plane' },
     initial: 'idle',
     states: {
       idle: {

@@ -1,5 +1,6 @@
 import { watch } from 'chokidar';
 import { generate } from '../functions';
+import { isPath, type Path } from '../schemas';
 
 export const start = () => {
   const STARS = '*'.repeat(36);
@@ -18,13 +19,15 @@ export const start = () => {
   console.log();
 };
 
-export const watcher = (persistent: boolean, ...files: string[]) => {
+export const watcher = (persistent: boolean, ...files: Path[]) => {
   const watcher = watch(files, {
     cwd: process.cwd(),
     persistent,
   })
     .once('add', start)
-    .on('all', (_, file) => generate(file))
+    .on('all', (_, file) => {
+      if (isPath(file)) generate(file);
+    })
     .on('add', file => console.log(`File added: ${file}`))
     .on('change', file => console.log(`File changed: ${file}`))
     .on('unlink', file => {

@@ -1,25 +1,25 @@
-import { PROJECT } from '../constants';
-import { extractFromFile } from './extractFromFile';
+import { LIBS, PROJECT, TEMPLATE_HEADER } from '../../constants';
+import { extractFromFile } from './file';
 import {
   arrayToUnionString,
   buildPaths,
   extractAllPaths,
   generateTypesString,
-} from './helpers';
+} from '../helpers';
 
 /**
  * Extracts the first parameter from the specified file.
  * @param filePath The path to the file from which to extract the parameter. It is relative to process.cwd
  * @returns The extracted parameter or undefined if not found.
  */
-export const extractVariables = (filePath: string) => {
+export const extractMachineVariables = (filePath: string) => {
   const all = extractFromFile(PROJECT, filePath);
 
   const hasImport = all.imports.some(
     ({ moduleSpecifier, namedImports }) => {
       return (
-        moduleSpecifier === '@bemedev/app-ts' &&
-        namedImports.includes('createMachine')
+        moduleSpecifier === LIBS.machine.lib &&
+        namedImports.includes(LIBS.machine.function)
       );
     },
   );
@@ -29,30 +29,14 @@ export const extractVariables = (filePath: string) => {
   }
 
   const variables = all.variables.filter(
-    v => v.function === 'createMachine',
+    v => v.function === LIBS.machine.function,
   );
 
   const types: string[] = [
     `/**
  *
  * All paths of the concerned files
- * 
- * ### Author
- *
- * chlbri (bri_lvi@icloud.com)
- *
- * [My GitHub](https://github.com/chlbri?tab=repositories)
- *
- * <br/>
- *
- * ### Documentation
- *
- * Link to machine lib [here](https://www.npmjs.com/package/@bemedev/app-ts).
- *
- * Link to this lib [here](https://www.npmjs.com/package/@bemedev/app-cli)
- *
- *
- * This file is auto-generated. Do not edit manually.
+ ${TEMPLATE_HEADER}
  */`,
   ];
 
@@ -87,22 +71,7 @@ export const extractVariables = (filePath: string) => {
    * 
    * Constants as type helpers for the concerned file. 
    * Don't use it as values, just for typings
-   * 
-   * ### Author
-   * 
-   * chlbri (bri_lvi@icloud.com)
-   * 
-   * [My GitHub](https://github.com/chlbri?tab=repositories)
-   * 
-   * <br/>
-   * 
-   * ### Documentation
-   *
-   * Link to machine lib [here](https://www.npmjs.com/package/@bemedev/app-ts).
-   * 
-   * Link to this lib [here](https://www.npmjs.com/package/@bemedev/app-cli)
-   * 
-   * NB: This file is auto-generated. Do not edit manually.
+   ${TEMPLATE_HEADER}
    */
     export const SCHEMAS = {`,
     ...variables4.map(v => {

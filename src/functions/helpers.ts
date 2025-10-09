@@ -1,5 +1,8 @@
 import { stateType } from '@bemedev/app-ts/lib/states/functions/stateType.js';
+import { glob } from 'node:fs/promises';
 import { extname } from 'node:path';
+import { MATCHES } from '../constants';
+import type { Path } from '../schemas';
 
 export const withoutExtension = (_file: string) => {
   const extension = extname(_file);
@@ -117,4 +120,10 @@ export const generateTypesString = (
   return `{
       ${properties.join('\n      ')}
     }`;
+};
+
+export const getFiles = async (...files: Path[]) => {
+  const has = files.length > 0;
+  const out = await Array.fromAsync(glob(has ? files : MATCHES));
+  return out as Path[];
 };

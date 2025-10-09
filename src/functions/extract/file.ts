@@ -1,7 +1,7 @@
 import { Node, Project, SyntaxKind } from 'ts-morph';
-import { findFirstCallExpression } from './findFirstCallExpression';
-import { parseObject } from './parseObject';
-import { resolveType } from './resolveType';
+import { findFirstCallExpression } from '../findFirstCallExpression';
+import { parseObject } from '../parseObject';
+import { resolveType } from '../resolveType';
 
 export const extractFromFile = (project: Project, filePath: string) => {
   const sourceFile = project.addSourceFileAtPath(filePath);

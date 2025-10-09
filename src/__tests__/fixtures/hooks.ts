@@ -6,6 +6,8 @@ export const usePrepare = () => {
     'src/__tests__/fixtures/data/config1.machine.ts',
     'src/__tests__/fixtures/data/config2.machine.ts',
     'src/__tests__/fixtures/data/config3.machine.ts',
+    'src/__tests__/fixtures/data/config1.logic.ts',
+    'src/__tests__/fixtures/data/config1.function.ts',
   ];
 
   const GEN_FILES = FILES.map(withoutExtension).map(
