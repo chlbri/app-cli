@@ -134,6 +134,7 @@
     "ts-morph": "^27.0.0"
   },
   "peerDependencies": {
-    "@bemedev/app-ts": "^1.2.2"
+    "@bemedev/app-ts": "^1.2.2",
+    "@bemedev/fsf": "^1.0.0"
   }
 }
