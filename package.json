@@ -69,7 +69,7 @@
     "rinit": "pnpm run rm && pnpm run config",
     "rinit:off": "pnpm run rm && pnpm run config:off",
     "rimraf": "pnpx rimraf -rf",
-    "rm": "pnpm run rimraf node_modules pnpm-lock.yaml",
+    "rm": "pnpm run rimraf -- node_modules pnpm-lock.yaml",
     "rm:lib": "pnpm run rimraf lib",
     "rolldown": "rolldown -c",
     "size": "size-limit",
@@ -94,6 +94,7 @@
     "vite": "8.0.10"
   },
   "devDependencies": {
+    "@bemedev/app": "0.1.0-canary",
     "@bemedev/app-ts": "3.0.1",
     "@bemedev/build-tests": "0.1.2",
     "@bemedev/dev-utils": "^0.6.4",
@@ -125,6 +126,7 @@
     "vitest": "4.1.4"
   },
   "peerDependencies": {
+    "@bemedev/app": "0.1.0-canary",
     "@bemedev/app-ts": "^1.2.2"
   },
   "size-limit": [

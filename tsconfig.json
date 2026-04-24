@@ -1,6 +1,11 @@
 {
   "include": ["src/**/*"],
   "compilerOptions": {
+    "paths": {
+      "#states": ["./node_modules/@bemedev/app/lib/states/index.d.ts"],
+      "#utils": ["./node_modules/@bemedev/app/lib/utils/index.d.ts"],
+      "#utils/*": ["./node_modules/@bemedev/app/lib/utils/*"]
+    },
     "lib": ["dom", "esnext"],
     "importHelpers": true,
     "target": "ESNext",
@@ -15,7 +20,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "moduleResolution": "Bundler",
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "node"],
     "jsx": "react",
     "esModuleInterop": true,
     "skipLibCheck": true,
