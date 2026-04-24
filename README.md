@@ -5,7 +5,7 @@
 ## About
 
 This library provides a command-line interface (CLI) for generating
-TypeScript typings from `@bemedev/app-ts` state machine configurations. It
+TypeScript typings from `@bemedev/app` state machine configurations. It
 automatically extracts and generates type definitions from your machine
 files, offering a better development experience with improved
 autocompletion, type checking, and documentation.
@@ -18,7 +18,7 @@ contributing to the project.
 ## Features
 
 - **Automatic Type Generation**: Extracts TypeScript typings from
-  `.machine.ts` files that use `createMachine` from `@bemedev/app-ts`
+  `.machine.ts` files that use `createMachine` from `@bemedev/app`
 - **Watch Mode**: Monitors file changes and regenerates types automatically
 - **Flexible File Selection**: Generate types for specific files or use
   glob patterns
@@ -31,8 +31,7 @@ contributing to the project.
 
 ## Installation
 
-Install as a development dependency in your project using
-`@bemedev/app-ts`:
+Install as a development dependency in your project using `@bemedev/app`:
 
 ```sh
 pnpm add -D @bemedev/app-cli
@@ -43,7 +42,7 @@ pnpm add -D @bemedev/app-cli
 ## Requirements
 
 - Node.js >= 22
-- Files must use `@bemedev/app-ts` with `createMachine` function
+- Files must use `@bemedev/app` with `createMachine` function
 - Machine files should follow the `.machine.ts` naming convention
 
 <br/>

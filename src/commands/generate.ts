@@ -1,9 +1,9 @@
 import { array, command, flag, multioption, option, string } from "cmd-ts";
 import { DEFAULT_EXCLUDES, DEFAULT_OUTPUT } from "../core/constants";
-import { generateAppGen } from "../core/generator";
+import { generator } from "../core/generator";
 
 /**
- * CLI command: `app-ts generate`
+ * CLI command: `app generate`
  *
  * One-time generation of app.gen.ts from all discovered machine files.
  *
@@ -29,17 +29,18 @@ import { generateAppGen } from "../core/generator";
  * pnpm run generate
  *
  * # Custom output path
- * app-ts generate --output lib/app.gen.ts
+ * app generate --output lib/app.gen.ts
  *
  * # Exclude additional directories
- * app-ts generate --excludes temp build
+ * app generate --excludes temp build
  *
  * # Dry-run to inspect output
- * app-ts generate --dry-run | less
+ * app generate --dry-run | less
  * ```
  *
- * @type {Command}
- * @see {@link generateAppGen} for the underlying generation logic
+ * @see {@link generator} for the underlying generation logic
+ * @see {@link DEFAULT_EXCLUDES} for default ignored directories
+ * @see {@link DEFAULT_OUTPUT} for default output file path
  */
 export const generate = command({
   name: "generate",
@@ -67,6 +68,6 @@ export const generate = command({
     }),
   },
   handler: async ({ output, excludes, dryRun }) => {
-    return generateAppGen({ output, excludes, dryRun });
+    return generator({ output, excludes, dryRun });
   },
 });
