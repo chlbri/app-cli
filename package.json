@@ -1,6 +1,6 @@
 {
   "name": "@bemedev/app-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "CLI for generating TypeScript typings for lib @bemedev/app",
   "keywords": [
     "@bemedev/app",
@@ -51,7 +51,6 @@
     "clean": "pnpm run rm && pnpm run config",
     "config": "pnpm install",
     "config:off": "pnpm run config --offline",
-    "config:vitest": "pnpm add -D @vitest/coverage-v8@4.1.4 @vitest/ui@4.1.4 vitest@4.1.4",
     "dev": "tsx src/index.ts dev -o ./src/__tests__/app.gen.ts",
     "generate": "tsx src/index.ts generate -o ./src/__tests__/app.gen.ts",
     "fmt": "oxfmt",
@@ -79,8 +78,8 @@
     "test:only": "pnpm run test:coverage --no-coverage",
     "test:coverage": "vitest run",
     "test:watch": "vitest",
-    "upgrade": "pnpm dlx @bemedev/upgrade-npm-package && pnpm run config:vitest",
-    "upgrade:safe": "pnpm up --latest && pnpm run config:vitest"
+    "upgrade": "pnpm dlx @bemedev/upgrade-npm-package",
+    "upgrade:safe": "pnpm up --latest"
   },
   "dependencies": {
     "cmd-ts": "0.15.0",
@@ -103,8 +102,8 @@
     "@types/node": "25.6.0",
     "@types/picomatch": "4.0.3",
     "@types/shelljs": "0.10.0",
-    "@vitest/coverage-v8": "4.1.4",
-    "@vitest/ui": "4.1.4",
+    "@vitest/coverage-v8": "4.1.5",
+    "@vitest/ui": "4.1.5",
     "eslint": "10.2.1",
     "glob": "^13.0.6",
     "globals": "17.5.0",
@@ -116,8 +115,9 @@
     "shelljs": "0.10.0",
     "size-limit": "12.1.0",
     "tslib": "2.8.1",
+    "tsx": "^4.21.0",
     "typescript": "6.0.3",
-    "vitest": "4.1.4"
+    "vitest": "4.1.5"
   },
   "peerDependencies": {
     "@bemedev/app": "0.1.0-canary"

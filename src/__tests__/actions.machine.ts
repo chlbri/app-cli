@@ -1,6 +1,14 @@
-import { createMachine } from '@bemedev/app';
+import { createMachine, typings } from "@bemedev/app";
 
-export default createMachine('actions', {
-  initial: 'idle',
-  states: { idle: {} },
-});
+export default createMachine(
+  "actions",
+  {
+    initial: "idle",
+    states: { idle: {} },
+  },
+  {
+    pContext: typings.pContext({
+      count: "number",
+    }),
+  },
+);
