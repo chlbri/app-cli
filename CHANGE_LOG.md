@@ -6,6 +6,35 @@
 <details>
 <summary>
 
+## **[0.2.1] - 2026/04/24** => _16:49_
+
+</summary>
+
+- Update release scripts and upgrade workflow
+- Upgrade `vitest` packages to `4.1.5`
+- Remove obsolete `config:vitest` script
+
+</details>
+
+<details>
+<summary>
+
+## **[0.2.0] - 2025/10/09** => _14:55_
+
+</summary>
+
+- Upgrade deps
+- Improve generation, not no error undefined
+- Add generation for lib `@bemedev/fsf` (`@bemedev/app-ts` +
+  `@bemedev/fsf`)
+
+</details>
+
+<details>
+
+<details>
+<summary>
+
 ## **[0.1.7] - 2025/08/28** => _10:50_
 
 </summary>
@@ -17,7 +46,9 @@
 </details>
 
 <br/>
-<details>
+
+<br/>
+
 <summary>
 
 ## **[0.1.6] - 2025/08/18** => _00:50_

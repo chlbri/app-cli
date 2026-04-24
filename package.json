@@ -1,24 +1,20 @@
 {
   "name": "@bemedev/app-cli",
-  "version": "0.1.7",
-  "description": "CLI for generating TypeScript typings for lib @bemedev/app-ts",
-  "bin": {
-    "app-typings": "lib/cli/index.js"
-  },
+  "version": "0.2.1",
+  "description": "CLI for generating TypeScript typings for lib @bemedev/app",
+  "keywords": [
+    "@bemedev/app",
+    "cli",
+    "state machines",
+    "types",
+    "typings"
+  ],
+  "license": "MIT",
   "author": {
-    "email": "bri_lvi@icloud.com",
     "name": "chlbri",
+    "email": "bri_lvi@icloud.com",
     "url": "https://bemedev.vercel.app"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chlbri/app-cli.git"
-  },
-  "license": "MIT",
-  "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "module": "lib/index.js",
   "maintainers": [
     {
       "email": "bri_lvi@icloud.com",
@@ -33,50 +29,98 @@
       "url": "https://bemedev.vercel.app"
     }
   ],
-  "keywords": [
-    "@bemedev/app-ts",
-    "types",
-    "typings",
-    "state machines",
-    "cli"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chlbri/app-cli.git"
+  },
+  "bin": {
+    "app": "lib/index.js"
+  },
   "files": [
     "lib",
     "public"
   ],
-  "engines": {
-    "node": ">=22"
-  },
+  "type": "module",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "build": "pnpm rm:lib && pnpm run rollup",
-    "ci": "pnpm run config:off && pnpm run lint && pnpm run test && pnpm run prettier",
-    "ci:admin": "pnpm run rm && pnpm run upgrade && pnpm run ci",
+    "build": "pnpm rm:lib && pnpm run rolldown && pnpm run generate",
+    "ci": "CI_START=$(date +%s) && pnpm run config:off && pnpm run lint && pnpm run test && pnpm run p-q && echo \"\n✅ CI takes $(($(date +%s) - CI_START))s\n\"",
+    "ci:admin": "pnpm run rm && pnpm run upgrade:safe && pnpm run ci",
     "clean": "pnpm run rm && pnpm run config",
     "config": "pnpm install",
     "config:off": "pnpm run config --offline",
-    "eslint": "eslint \"{src/**/*,App}.{ts,tsx}\"",
-    "lint": "pnpm run prettier && pnpm run eslint --fix",
+    "dev": "tsx src/index.ts dev -o ./src/__tests__/app.gen.ts",
+    "generate": "tsx src/index.ts generate -o ./src/__tests__/app.gen.ts",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "_lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "lint": "pnpm run fmt && pnpm run lint:fix",
     "lint:watch": "onchange --await-write-finish 5500 \"**/*\" -- pnpm run lint",
+    "build:watch": "onchange --await-write-finish 1500 -d 10000 -v \"**/*.ts\" -- pnpm run build",
     "prepublishOnly": "",
     "prepare": "husky",
     "add:tarball": "build-tests pre",
     "preview": "pnpm run build && pnpm run add:tarball && app-typings generate -w",
-    "pretest": "pnpm run build",
-    "posttest": "pnpm run size",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "pretest": "pnpm run build && pnpm run size",
+    "posttest": "pnpm run fmt",
     "p-q": "pretty-quick",
     "rinit": "pnpm run rm && pnpm run config",
     "rinit:off": "pnpm run rm && pnpm run config:off",
     "rimraf": "pnpx rimraf -rf",
-    "rm": "pnpm run rimraf node_modules pnpm-lock.yaml",
+    "rm": "pnpm run rimraf -- node_modules pnpm-lock.yaml",
     "rm:lib": "pnpm run rimraf lib",
-    "rollup": "rollup -c",
+    "rolldown": "rolldown -c",
     "size": "size-limit",
     "test": "pnpm run test:coverage --no-coverage",
     "test:only": "pnpm run test:coverage --no-coverage",
     "test:coverage": "vitest run",
     "test:watch": "vitest",
-    "upgrade": "pnpm upgrade --latest"
+    "upgrade": "pnpm dlx @bemedev/upgrade-npm-package",
+    "upgrade:safe": "pnpm up --latest"
+  },
+  "dependencies": {
+    "cmd-ts": "0.15.0",
+    "node-watch": "0.7.4",
+    "ts-morph": "28.0.0"
+  },
+  "devDependencies": {
+    "@bemedev/app": "0.1.0-canary",
+    "@bemedev/app-ts": "3.0.1",
+    "@bemedev/build-tests": "0.1.2",
+    "@bemedev/dev-utils": "^0.6.5",
+    "@bemedev/fsf": "1.0.1",
+    "@bemedev/rollup-config": "0.2.2",
+    "@bemedev/sleep": "0.2.2",
+    "@bemedev/types": "0.4.2",
+    "@bemedev/vitest-alias": "0.0.3",
+    "@bemedev/vitest-exclude": "0.1.1",
+    "@bemedev/vitest-extended": "1.5.3",
+    "@size-limit/file": "12.1.0",
+    "@types/node": "25.6.0",
+    "@types/picomatch": "4.0.3",
+    "@types/shelljs": "0.10.0",
+    "@vitest/coverage-v8": "4.1.5",
+    "@vitest/ui": "4.1.5",
+    "eslint": "10.2.1",
+    "glob": "^13.0.6",
+    "globals": "17.5.0",
+    "husky": "9.1.7",
+    "oxfmt": "^0.46.0",
+    "oxlint": "^1.61.0",
+    "pretty-quick": "4.2.2",
+    "rolldown": "1.0.0-rc.17",
+    "shelljs": "0.10.0",
+    "size-limit": "12.1.0",
+    "tslib": "2.8.1",
+    "tsx": "^4.21.0",
+    "typescript": "6.0.3",
+    "vitest": "4.1.5"
+  },
+  "peerDependencies": {
+    "@bemedev/app": "0.1.0-canary"
   },
   "size-limit": [
     {
@@ -88,52 +132,12 @@
       "limit": "10 KB"
     }
   ],
-  "devDependencies": {
-    "@bemedev/app-ts": "^0.9.21",
-    "@bemedev/build-tests": "^0.1.2",
-    "@bemedev/fsf": "^0.8.0",
-    "@bemedev/rollup-config": "^0.1.8",
-    "@bemedev/sleep": "^0.1.2",
-    "@bemedev/types": "^0.4.2",
-    "@bemedev/vitest-alias": "^0.0.3",
-    "@bemedev/vitest-exclude": "^0.1.1",
-    "@bemedev/vitest-extended": "^1.3.6",
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.34.0",
-    "@size-limit/file": "^11.2.0",
-    "@types/node": "^24.3.0",
-    "@types/picomatch": "^4.0.2",
-    "@types/shelljs": "^0.8.17",
-    "@typescript-eslint/eslint-plugin": "^8.41.0",
-    "@typescript-eslint/parser": "^8.41.0",
-    "@vitest/coverage-v8": "^3.2.4",
-    "eslint": "^9.34.0",
-    "glob": "^11.0.3",
-    "globals": "^16.3.0",
-    "husky": "^9.1.7",
-    "prettier": "^3.6.2",
-    "pretty-quick": "^4.2.2",
-    "rollup": "^4.49.0",
-    "shelljs": "^0.10.0",
-    "size-limit": "^11.2.0",
-    "tslib": "^2.8.1",
-    "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+  "engines": {
+    "node": ">=22"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild"
     ]
-  },
-  "dependencies": {
-    "@bemedev/decompose": "^1.3.1",
-    "chokidar": "^4.0.3",
-    "cmd-ts": "^0.14.1",
-    "glob": "^11.0.3",
-    "node-watch": "^0.7.4",
-    "ts-morph": "^26.0.0"
-  },
-  "peerDependencies": {
-    "@bemedev/app-ts": "^0.9.20"
   }
 }
