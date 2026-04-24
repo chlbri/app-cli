@@ -1,4 +1,4 @@
-import sleep from '@bemedev/sleep';
+import { sleep } from '@bemedev/sleep';
 import { run } from 'cmd-ts';
 import { usePrepare } from '../__tests__/fixtures/hooks';
 import { generate } from './generate';
