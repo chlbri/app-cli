@@ -1,14 +1,13 @@
-import { array, command, multioption, option, string } from "cmd-ts";
-import nodeWatch from "node-watch";
-import { readFile, writeFile } from "node:fs/promises";
-import { basename, resolve } from "node:path";
+import { array, command, multioption, option, string } from 'cmd-ts';
+import nodeWatch from 'node-watch';
 import {
   DEFAULT_EXCLUDES,
   DEFAULT_OUTPUT,
   DEFAULT_REGEX,
   MACHINE_GLOB,
-} from "../core/constants";
-import { generator } from "../core/generator";
+} from '../core/constants';
+import { generator } from '../core/generator';
+import { createStarter } from '../core/helpers/starter';
 
 /**
  * CLI command: `app watch`
@@ -77,60 +76,28 @@ import { generator } from "../core/generator";
  * Uses libs like `node-watch` for efficient file watching and `cmd-ts` for CLI argument parsing.
  */
 export const watch = command({
-  name: "watch",
+  name: 'watch',
   description:
-    "Watch *.machine.ts / *.fsm.ts files and regenerate app.gen.ts on change",
-  aliases: ["dev"],
+    'Watch *.machine.ts / *.fsm.ts files and regenerate app.gen.ts on change',
+  aliases: ['dev'],
   args: {
     output: option({
       type: string,
-      long: "output",
-      short: "o",
+      long: 'output',
+      short: 'o',
       defaultValue: () => DEFAULT_OUTPUT,
-      description: "Output file path (relative to project root)",
+      description: 'Output file path (relative to project root)',
     }),
     excludes: multioption({
       type: array(string),
-      long: "excludes",
-      short: "e",
+      long: 'excludes',
+      short: 'e',
       defaultValue: () => DEFAULT_EXCLUDES,
-      description: "Directories to exclude",
+      description: 'Directories to exclude',
     }),
   },
   handler: async ({ output, excludes }) => {
     const cwd = process.cwd();
-
-    const isMachineFile = (filePath: string) =>
-      filePath.endsWith(".machine.ts") || filePath.endsWith(".fsm.ts");
-
-    const getMachineName = (filePath: string) => {
-      const filename = basename(filePath);
-      return filename.replace(/\.machine\.ts$|\.fsm\.ts$/i, "") || "machine";
-    };
-
-    const tryCreateStarterMachine = async (filePath: string) => {
-      if (!isMachineFile(filePath)) return;
-
-      const absolutePath = resolve(cwd, filePath);
-      let existing = "";
-
-      try {
-        existing = await readFile(absolutePath, "utf8");
-      } catch (err: any) {
-        if (err?.code !== "ENOENT") {
-          console.error(`Failed to inspect created file ${filePath}:`, err);
-        }
-        return;
-      }
-
-      if (existing.trim().length > 0) return;
-
-      const defaultName = getMachineName(filePath);
-      const defaultContent = `import { createMachine } from '@bemedev/app';\n\nexport default createMachine('${defaultName}', { initial: 'idle', states: { idle: {} } })\n`;
-
-      await writeFile(absolutePath, defaultContent, "utf8");
-      console.log(`Created starter machine file: ${filePath}`);
-    };
 
     // Initial generation
     await generator({ output, excludes, cwd });
@@ -141,48 +108,25 @@ export const watch = command({
 
     // const paths = await Array.fromAsync(glob(MACHINE_GLOB));
 
-    const watcher2 = nodeWatch("./", {
+    const watcher2 = nodeWatch('./', {
       recursive: true,
       delay: 300,
       filter: DEFAULT_REGEX,
-    }).on("change", async (_, path) => {
-      if (typeof path !== "string") return;
-      console.log(`File added: ${path}`);
-      await tryCreateStarterMachine(path);
+    }).on('change', async (event, path) => {
+      if (typeof path !== 'string') return;
+
+      if (event === 'update') {
+        await createStarter(path);
+      }
+
       await regenerate(path);
     });
 
-    // Watch for changes
-    // const watcher = chokidarWatch('./', {
-    //   cwd,
-    //   ignored: (file, stats) => {
-    //     const out =
-    //       !!stats?.isFile() &&
-    //       !file.endsWith('.fsm.ts') &&
-    //       !file.endsWith('.machine.ts');
-
-    //     return out;
-    //   },
-    //   ignoreInitial: true,
-
-    //   awaitWriteFinish: {
-    //     stabilityThreshold: 300,
-    //     pollInterval: 100,
-    //   },
-    // })
-    //   .on('add', async path => {
-    //     console.log(`File added: ${path}`);
-    //     await tryCreateStarterMachine(path);
-    //     await regenerate(path);
-    //   })
-    //   .on('change', regenerate)
-    //   .on('unlink', regenerate);
-
     console.log(`\nWatching for changes in ${MACHINE_GLOB}...`);
-    console.log("Press Ctrl+C to stop.\n");
+    console.log('Press Ctrl+C to stop.\n');
 
     // Keep process alive
-    process.on("SIGINT", async () => {
+    process.on('SIGINT', async () => {
       // await watcher.close();
       watcher2.close();
       process.exit(0);

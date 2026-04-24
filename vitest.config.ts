@@ -16,6 +16,9 @@ export default defineConfig({
     fileParallelism: false,
     globals: true,
     logHeapUsage: true,
+    typecheck: {
+      enabled: true,
+    },
     coverage: {
       enabled: true,
       reportsDirectory: '.coverage',
