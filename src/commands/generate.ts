@@ -1,6 +1,6 @@
-import { array, command, flag, multioption, option, string } from "cmd-ts";
-import { DEFAULT_EXCLUDES, DEFAULT_OUTPUT } from "../core/constants";
-import { generator } from "../core/generator";
+import { array, command, flag, multioption, option, string } from 'cmd-ts';
+import { DEFAULT_EXCLUDES, DEFAULT_OUTPUT } from '../core/constants';
+import { generator } from '../core/generator';
 
 /**
  * CLI command: `app generate`
@@ -43,28 +43,29 @@ import { generator } from "../core/generator";
  * @see {@link DEFAULT_OUTPUT} for default output file path
  */
 export const generate = command({
-  name: "generate",
-  description: "Generate app.gen.ts from all *.machine.ts / *.fsm.ts files",
+  name: 'generate',
+  description:
+    'Generate app.gen.ts from all *.machine.ts / *.fsm.ts files',
   args: {
     output: option({
       type: string,
-      long: "output",
-      short: "o",
+      long: 'output',
+      short: 'o',
       defaultValue: () => DEFAULT_OUTPUT,
-      description: "Output file path (relative to project root)",
+      description: 'Output file path (relative to project root)',
     }),
 
     excludes: multioption({
       type: array(string),
-      long: "excludes",
-      short: "e",
+      long: 'excludes',
+      short: 'e',
       defaultValue: () => DEFAULT_EXCLUDES,
-      description: "Directories to exclude",
+      description: 'Directories to exclude',
     }),
 
     dryRun: flag({
-      long: "dry-run",
-      description: "Print output without writing to file",
+      long: 'dry-run',
+      description: 'Print output without writing to file',
     }),
   },
   handler: async ({ output, excludes, dryRun }) => {

@@ -72,17 +72,17 @@ Customize the messages that trigger the version bump. It must be a string,
 case sensitive, comma separated (optional). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    minor-wording: "add,Adds,new"
-    major-wording: "MAJOR,cut-major"
+    minor-wording: 'add,Adds,new'
+    major-wording: 'MAJOR,cut-major'
     patch-wording:
-      "patch,fixes" # Providing patch-wording will override commits
+      'patch,fixes' # Providing patch-wording will override commits
       # defaulting to a patch bump.
-    rc-wording: "RELEASE,alpha"
+    rc-wording: 'RELEASE,alpha'
 ```
 
 #### **version-type:**
@@ -91,12 +91,12 @@ Override the version type taken from the commit message. Usefull when
 manually running workflow via workflow_dispatch
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    version-type: "minor"
+    version-type: 'minor'
 ```
 
 #### **default:**
@@ -104,8 +104,8 @@ manually running workflow via workflow_dispatch
 Set a default version bump to use (optional - defaults to patch). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
@@ -118,13 +118,13 @@ Set a preid value will building prerelease version (optional - defaults to
 'rc'). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
     default: prerelease
-    preid: "prc"
+    preid: 'prc'
 ```
 
 #### **tag-prefix:**
@@ -132,12 +132,12 @@ Set a preid value will building prerelease version (optional - defaults to
 Prefix that is used for the git tag (optional). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    tag-prefix: "v"
+    tag-prefix: 'v'
 ```
 
 #### **tag-suffix:**
@@ -145,12 +145,12 @@ Prefix that is used for the git tag (optional). Example:
 Suffix that is used for the git tag (optional). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    tag-suffix: "-beta"
+    tag-suffix: '-beta'
 ```
 
 #### **skip-tag:**
@@ -158,12 +158,12 @@ Suffix that is used for the git tag (optional). Example:
 The tag is not added to the git repository (optional). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    skip-tag: "true"
+    skip-tag: 'true'
 ```
 
 #### **skip-commit:**
@@ -173,13 +173,13 @@ combination with `skip-tag`, since if there's no commit, there's nothing to
 tag. Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    skip-commit: "true"
-    skip-tag: "true"
+    skip-commit: 'true'
+    skip-tag: 'true'
 ```
 
 #### **skip-push:**
@@ -188,12 +188,12 @@ If true, skip pushing any commits or tags created after the version bump
 (optional). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    skip-push: "true"
+    skip-push: 'true'
 ```
 
 #### **PACKAGEJSON_DIR:**
@@ -202,11 +202,11 @@ Param to parse the location of the desired package.json (optional).
 Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    PACKAGEJSON_DIR: "frontend"
+    PACKAGEJSON_DIR: 'frontend'
 ```
 
 #### **PACKAGE_FILENAME:**
@@ -214,11 +214,11 @@ Example:
 Param to use another file for detect version (optional). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    PACKAGE_FILENAME: "app.json"
+    PACKAGE_FILENAME: 'app.json'
 ```
 
 #### **TARGET-BRANCH:**
@@ -228,12 +228,12 @@ such as updating the version on master after a tag has been set (optional).
 Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    target-branch: "master"
+    target-branch: 'master'
 ```
 
 #### **commit-message:**
@@ -242,12 +242,12 @@ Set a custom commit message for version bump commit. Useful for skipping
 additional workflows run on push. Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    commit-message: "CI: bumps version to {{version}} [skip ci]"
+    commit-message: 'CI: bumps version to {{version}} [skip ci]'
 ```
 
 #### **bump-policy:**
@@ -264,12 +264,12 @@ with version bumps. Options are as follows:
 Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    bump-policy: "ignore"
+    bump-policy: 'ignore'
 ```
 
 #### **check-last-commit-only:**
@@ -278,12 +278,12 @@ Set check-last-commit-only to only read last commit's message (optional).
 Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    check-last-commit-only: "true"
+    check-last-commit-only: 'true'
 ```
 
 #### **custom-git-domain:**
@@ -293,12 +293,12 @@ when using self-hosted instances of GitHub or alternative git provider
 (e.g. Gitea). Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    custom-git-domain: "github.com"
+    custom-git-domain: 'github.com'
 ```
 
 #### [DEPRECATED] **push:**
@@ -307,8 +307,8 @@ when using self-hosted instances of GitHub or alternative git provider
 tag/package.json. Example:
 
 ```yaml
-- name: "Automated Version Bump"
-  uses: "phips28/gh-action-bump-version@master"
+- name: 'Automated Version Bump'
+  uses: 'phips28/gh-action-bump-version@master'
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:

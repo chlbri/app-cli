@@ -121,23 +121,23 @@ from `tsconfig.json` if present). No per-machine `*.gen.ts` files.
 
 ```ts
 // src/__tests__/interpreters/tags/tags.machine.ts
-import { createMachine } from "#machine";
-import { type } from "@bemedev/typings";
+import { createMachine } from '#machine';
+import { type } from '@bemedev/typings';
 
 export default createMachine(
-  "src/__tests__/interpreters/tags/tags.machine",
+  'src/__tests__/interpreters/tags/tags.machine',
   {
-    initial: "idle",
+    initial: 'idle',
     states: {
-      idle: { tags: ["idle"], on: { NEXT: "/working" } },
+      idle: { tags: ['idle'], on: { NEXT: '/working' } },
       working: {
-        tags: ["working", "busy"],
-        on: { NEXT: "/final", PREV: "/idle" },
+        tags: ['working', 'busy'],
+        on: { NEXT: '/final', PREV: '/idle' },
       },
       final: {},
     },
   },
-  { eventsMap: type({ NEXT: "never", PREV: "never" }) },
+  { eventsMap: type({ NEXT: 'never', PREV: 'never' }) },
 );
 ```
 
@@ -160,10 +160,10 @@ Rules:
 ### 1.1 Open the Project
 
 ```ts
-import { Project } from "ts-morph";
+import { Project } from 'ts-morph';
 
 const project = new Project({
-  tsConfigFilePath: resolve(cwd, "tsconfig.json"),
+  tsConfigFilePath: resolve(cwd, 'tsconfig.json'),
   skipAddingFilesFromTsConfig: true,
 });
 ```
@@ -212,7 +212,7 @@ The optional third argument may contain a `pContext` field built with the
 
 ```ts
 {
-  pContext: type({ data: "string", count: "number" });
+  pContext: type({ data: 'string', count: 'number' });
 }
 ```
 
@@ -236,7 +236,7 @@ Once Phase 1 produces a plain `NodeConfig` object, the CLI calls the
 library's own `parseTree` function directly:
 
 ```ts
-import { parseTree } from "../../utils/parseTree";
+import { parseTree } from '../../utils/parseTree';
 
 const tree = parseTree(config); // NodeConfig → Output
 ```
@@ -268,8 +268,8 @@ contains **no custom tree walker**. Symbol extraction is 100% delegated.
 ```ts
 function setToUnion(set: BetterSet<string>): string {
   const values = [...set];
-  if (values.length === 0) return "never";
-  return values.map((v) => `'${v}'`).join(" | ");
+  if (values.length === 0) return 'never';
+  return values.map(v => `'${v}'`).join(' | ');
 }
 // {'NEXT', 'PREV'} → "'NEXT' | 'PREV'"
 // {}               → "never"
@@ -279,8 +279,8 @@ function setToUnion(set: BetterSet<string>): string {
 
 ```ts
 function pathsToUnion(paths: string[]): string {
-  if (paths.length === 0) return "never";
-  return paths.map((p) => `'${p}'`).join(" | ");
+  if (paths.length === 0) return 'never';
+  return paths.map(p => `'${p}'`).join(' | ');
 }
 // ['/', '/idle', '/working'] → "'/' | '/idle' | '/working'"
 ```
@@ -302,14 +302,14 @@ TypeScript type literal:
 
 ```ts
 function configPathsToType(cp: ConfigPaths, indent = 0): string {
-  const pad = " ".repeat(indent);
-  const targets = cp.targets.map((t) => `'${t}'`).join(" | ") || "never";
+  const pad = ' '.repeat(indent);
+  const targets = cp.targets.map(t => `'${t}'`).join(' | ') || 'never';
   const lines: string[] = [`{ targets: (${targets})[];`];
 
   if (cp.initial) {
     const childNames = Object.keys(cp.states ?? {})
-      .map((k) => `'${k}'`)
-      .join(" | ");
+      .map(k => `'${k}'`)
+      .join(' | ');
     lines.push(`${pad}  initial?: ${childNames};`);
   }
 
@@ -321,7 +321,7 @@ function configPathsToType(cp: ConfigPaths, indent = 0): string {
   }
 
   lines.push(`${pad}}`);
-  return lines.join("\n" + pad);
+  return lines.join('\n' + pad);
 }
 ```
 
@@ -366,19 +366,19 @@ Given:
 
 ```ts
 export default createMachine(
-  "src/__tests__/interpreters/tags/tags.machine",
+  'src/__tests__/interpreters/tags/tags.machine',
   {
-    initial: "idle",
+    initial: 'idle',
     states: {
-      idle: { tags: ["idle"], on: { NEXT: "/working" } },
+      idle: { tags: ['idle'], on: { NEXT: '/working' } },
       working: {
-        tags: ["working", "busy"],
-        on: { NEXT: "/final", PREV: "/idle" },
+        tags: ['working', 'busy'],
+        on: { NEXT: '/final', PREV: '/idle' },
       },
       final: {},
     },
   },
-  { eventsMap: type({ NEXT: "never", PREV: "never" }) },
+  { eventsMap: type({ NEXT: 'never', PREV: 'never' }) },
 );
 ```
 
@@ -425,42 +425,42 @@ Given:
 
 ```ts
 export default createMachine(
-  "src/__tests__/interpreters/complex/machine1.machine",
+  'src/__tests__/interpreters/complex/machine1.machine',
   {
-    initial: "idle",
+    initial: 'idle',
     states: {
       idle: {
-        on: { START: { target: "/checking", actions: "provideAsset" } },
+        on: { START: { target: '/checking', actions: 'provideAsset' } },
       },
       checking: {
         after: {
-          CHECK_DELAY: { target: "/working", guards: "assetIsDefined" },
+          CHECK_DELAY: { target: '/working', guards: 'assetIsDefined' },
         },
-        on: { RESET: "/idle" },
+        on: { RESET: '/idle' },
       },
       working: {
-        initial: "idle",
-        entry: "addIntermediary",
+        initial: 'idle',
+        entry: 'addIntermediary',
         states: {
           idle: {
             on: {
               ADD_INTERMEDIARY: {
-                target: "/working/adding",
-                guards: "intermediariesAreNotFull",
+                target: '/working/adding',
+                guards: 'intermediariesAreNotFull',
               },
             },
           },
-          adding: { on: { RESET: "/idle" } },
+          adding: { on: { RESET: '/idle' } },
         },
       },
     },
   },
   {
-    pContext: type({ asset: { id: "string", value: "number" } }),
+    pContext: type({ asset: { id: 'string', value: 'number' } }),
     eventsMap: type({
-      START: "never",
-      ADD_INTERMEDIARY: "never",
-      RESET: "never",
+      START: 'never',
+      ADD_INTERMEDIARY: 'never',
+      RESET: 'never',
     }),
   },
 );
@@ -536,22 +536,22 @@ Generated Register entry:
  * Regenerated: 2026-04-23T10:00:00.000Z
  */
 
-declare module "@bemedev/app" {
+declare module '@bemedev/app' {
   interface Register {
     // ── actions ──────────────────────────────────────────────────────────
-    "src/__tests__/actions/actions.1.machine": {
+    'src/__tests__/actions/actions.1.machine': {
       paths: {
         map: {
-          targets: ("/" | "/idle" | "/working")[];
-          initial?: "idle" | "working";
+          targets: ('/' | '/idle' | '/working')[];
+          initial?: 'idle' | 'working';
           states?: {
-            "/idle": { targets: ("/" | "/working")[] };
-            "/working": { targets: ("/" | "/idle")[] };
+            '/idle': { targets: ('/' | '/working')[] };
+            '/working': { targets: ('/' | '/idle')[] };
           };
         };
-        all: "/" | "/idle" | "/working";
+        all: '/' | '/idle' | '/working';
       };
-      events: "NEXT";
+      events: 'NEXT';
       options: {
         children: never;
         emitters: never;
@@ -589,12 +589,12 @@ Key rules:
 ### Package entry: `src/cli/index.ts`
 
 ```ts
-import { run, subcommands } from "cmd-ts";
-import { generateCmd } from "./commands/generate";
-import { watchCmd } from "./commands/watch";
+import { run, subcommands } from 'cmd-ts';
+import { generateCmd } from './commands/generate';
+import { watchCmd } from './commands/watch';
 
 const app = subcommands({
-  name: "app-ts",
+  name: 'app-ts',
   cmds: { generate: generateCmd, watch: watchCmd },
 });
 
@@ -604,32 +604,32 @@ run(app, process.argv.slice(2));
 ### `generate` command
 
 ```ts
-import { command, option, optional, string, flag } from "cmd-ts";
-import { generateAppGen } from "../core/generator";
+import { command, option, optional, string, flag } from 'cmd-ts';
+import { generateAppGen } from '../core/generator';
 
 export const generateCmd = command({
-  name: "generate",
-  description: "Scan all *.machine.ts / *.fsm.ts and emit app.gen.ts",
+  name: 'generate',
+  description: 'Scan all *.machine.ts / *.fsm.ts and emit app.gen.ts',
   args: {
     output: option({
       type: optional(string),
-      long: "output",
-      short: "o",
-      description: "Output file path (default: app.gen.ts)",
+      long: 'output',
+      short: 'o',
+      description: 'Output file path (default: app.gen.ts)',
     }),
     cwd: option({
       type: optional(string),
-      long: "cwd",
-      description: "Working directory (default: process.cwd())",
+      long: 'cwd',
+      description: 'Working directory (default: process.cwd())',
     }),
     dryRun: flag({
-      long: "dry-run",
-      description: "Print output without writing to disk",
+      long: 'dry-run',
+      description: 'Print output without writing to disk',
     }),
     excludes: option({
       type: optional(string),
-      long: "exclude",
-      description: "Comma-separated glob patterns to exclude",
+      long: 'exclude',
+      description: 'Comma-separated glob patterns to exclude',
     }),
   },
   handler: async ({ output, cwd, dryRun, excludes }) => {
@@ -637,7 +637,7 @@ export const generateCmd = command({
       output,
       cwd,
       dryRun,
-      excludes: excludes?.split(","),
+      excludes: excludes?.split(','),
     });
   },
 });
@@ -646,16 +646,16 @@ export const generateCmd = command({
 ### `watch` command
 
 ```ts
-import { command, option, optional, string } from "cmd-ts";
-import { watchMachines } from "../core/watcher";
+import { command, option, optional, string } from 'cmd-ts';
+import { watchMachines } from '../core/watcher';
 
 export const watchCmd = command({
-  name: "watch",
+  name: 'watch',
   description:
-    "Watch *.machine.ts / *.fsm.ts and regenerate app.gen.ts on change",
+    'Watch *.machine.ts / *.fsm.ts and regenerate app.gen.ts on change',
   args: {
-    output: option({ type: optional(string), long: "output", short: "o" }),
-    cwd: option({ type: optional(string), long: "cwd" }),
+    output: option({ type: optional(string), long: 'output', short: 'o' }),
+    cwd: option({ type: optional(string), long: 'cwd' }),
   },
   handler: async ({ output, cwd }) => {
     await watchMachines({ output, cwd });
@@ -670,9 +670,9 @@ export const watchCmd = command({
 `src/cli/core/watcher.ts`:
 
 ```ts
-import chokidar from "chokidar";
-import { resolve } from "node:path";
-import { generateAppGen } from "./generator";
+import chokidar from 'chokidar';
+import { resolve } from 'node:path';
+import { generateAppGen } from './generator';
 
 export async function watchMachines(options: {
   output?: string;
@@ -683,13 +683,13 @@ export async function watchMachines(options: {
   // Full generation before entering the watch loop
   await generateAppGen({ ...options, cwd });
 
-  const watcher = chokidar.watch(["**/*.machine.ts", "**/*.fsm.ts"], {
+  const watcher = chokidar.watch(['**/*.machine.ts', '**/*.fsm.ts'], {
     cwd,
     ignored: [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/lib/**",
-      options.output ?? "app.gen.ts",
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/lib/**',
+      options.output ?? 'app.gen.ts',
     ],
     persistent: true,
     ignoreInitial: true,
@@ -703,19 +703,19 @@ export async function watchMachines(options: {
       console.log(`[app-ts] ${event}: ${filePath} — regenerating…`);
       try {
         await generateAppGen({ ...options, cwd });
-        console.log("[app-ts] app.gen.ts updated.");
+        console.log('[app-ts] app.gen.ts updated.');
       } catch (err) {
-        console.error("[app-ts] Generation failed:", err);
+        console.error('[app-ts] Generation failed:', err);
       }
     }, 150);
   };
 
   watcher
-    .on("add", (p) => regenerate("add", p))
-    .on("change", (p) => regenerate("change", p))
-    .on("unlink", (p) => regenerate("unlink", p));
+    .on('add', p => regenerate('add', p))
+    .on('change', p => regenerate('change', p))
+    .on('unlink', p => regenerate('unlink', p));
 
-  console.log("[app-ts] Watching for machine file changes…");
+  console.log('[app-ts] Watching for machine file changes…');
   await new Promise(() => {}); // keep process alive
 }
 ```
@@ -727,13 +727,13 @@ export async function watchMachines(options: {
 Skeleton — no custom tree walker, no regex config parser:
 
 ```ts
-import { glob } from "glob";
-import { writeFileSync } from "node:fs";
-import { resolve, relative } from "node:path";
-import { Project } from "ts-morph";
-import { parseTree } from "../../utils/parseTree";
-import type { NodeConfig } from "#states";
-import type { ConfigPaths } from "../../utils/parseTree.types";
+import { glob } from 'glob';
+import { writeFileSync } from 'node:fs';
+import { resolve, relative } from 'node:path';
+import { Project } from 'ts-morph';
+import { parseTree } from '../../utils/parseTree';
+import type { NodeConfig } from '#states';
+import type { ConfigPaths } from '../../utils/parseTree.types';
 
 // ── PHASE 1: ts-morph extraction ──────────────────────────────────────
 
@@ -812,7 +812,7 @@ function emitRegisterEntry(
     `      pContext?: ${pContextType};`,
     `      tags?: ${setToUnion(tree.tags)};`,
     `    };`,
-  ].join("\n");
+  ].join('\n');
 }
 
 // ── Public API ────────────────────────────────────────────────────────
@@ -824,22 +824,22 @@ export async function generateAppGen(options: {
   dryRun?: boolean;
 }): Promise<void> {
   const cwd = resolve(options.cwd ?? process.cwd());
-  const outputPath = resolve(cwd, options.output ?? "app.gen.ts");
+  const outputPath = resolve(cwd, options.output ?? 'app.gen.ts');
 
-  const files = await glob("**/*.{machine,fsm}.ts", {
+  const files = await glob('**/*.{machine,fsm}.ts', {
     cwd,
     ignore: [
       ...(options.excludes ?? []),
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/lib/**",
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/lib/**',
     ],
     absolute: true,
   });
 
   // Single Project instance for all files (one parse pass)
   const project = new Project({
-    tsConfigFilePath: resolve(cwd, "tsconfig.json"),
+    tsConfigFilePath: resolve(cwd, 'tsconfig.json'),
     skipAddingFilesFromTsConfig: true,
   });
   for (const f of files) project.addSourceFileAtPath(f);
@@ -866,19 +866,19 @@ export async function generateAppGen(options: {
     `declare module '@bemedev/app' {`,
     `  interface Register {`,
     ``,
-    entries.join("\n\n"),
+    entries.join('\n\n'),
     ``,
     `  }`,
     `}`,
     ``,
     `export {};`,
     ``,
-  ].join("\n");
+  ].join('\n');
 
   if (options.dryRun) {
     process.stdout.write(content);
   } else {
-    writeFileSync(outputPath, content, "utf-8");
+    writeFileSync(outputPath, content, 'utf-8');
     console.log(
       `[app-ts] Written: ${relative(cwd, outputPath)} (${entries.length} machines)`,
     );

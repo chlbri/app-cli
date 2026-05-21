@@ -1,10 +1,10 @@
 {
   "name": "Node.js Library",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
-  // 8 GB RAM for the container
-  "runArgs": ["--memory=8g", "--memory-swap=8g", "--cpus=2"],
+  // 4 GB RAM for the container
+  "runArgs": ["--memory=4g", "--memory-swap=4g", "--cpus=2"],
   "hostRequirements": {
-    "memory": "8gb"
+    "memory": "4gb"
   },
   // pnpm via corepack (ships with Node 24) + install deps
   "postCreateCommand": "corepack use pnpm@latest && pnpm install --frozen-lockfile",
@@ -22,8 +22,8 @@
   },
   "remoteEnv": {
     "NODE_ENV": "development",
-    // Give Node.js ~6 GB for heap
-    "NODE_OPTIONS": "--max-old-space-size=6144",
+    // Give Node.js ~3 GB for heap
+    "NODE_OPTIONS": "--max-old-space-size=3072",
     // pnpm store inside the container (no cross-device issues)
     "PNPM_HOME": "/home/node/.local/share/pnpm"
   },
