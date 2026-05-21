@@ -1,11 +1,11 @@
-import { parseTree } from '@bemedev/app/lib/utils/parseTree.js';
-import { existsSync, unlinkSync } from 'fs';
-import { writeFile } from 'fs/promises';
-import { glob } from 'glob';
-import { relative, resolve } from 'node:path';
-import { Project } from 'ts-morph';
-import { DEFAULT_EXCLUDES, DEFAULT_OUTPUT } from './constants';
-import { emitRegisterEntry, extractMachineInfo } from './helpers';
+import { parseTree } from "@bemedev/app/utils";
+import { existsSync, unlinkSync } from "fs";
+import { writeFile } from "fs/promises";
+import { glob } from "glob";
+import { relative, resolve } from "node:path";
+import { Project } from "ts-morph";
+import { DEFAULT_EXCLUDES, DEFAULT_OUTPUT } from "./constants";
+import { emitRegisterEntry, extractMachineInfo } from "./helpers";
 
 // ── Helpers delegated to src/core/helpers ─────────────────────────────────
 
@@ -73,7 +73,7 @@ export const generator = async (options?: {
   const outputPath = resolve(cwd, _options.output ?? DEFAULT_OUTPUT);
 
   // Discover machine files
-  const files = await glob('**/*.{machine,fsm}.ts', {
+  const files = await glob("**/*.{machine,fsm}.ts", {
     cwd,
     ignore: [...EXCLUDES, ...DEFAULT_EXCLUDES],
     absolute: true,
@@ -86,14 +86,14 @@ export const generator = async (options?: {
         `[app] Removed ${relative(cwd, outputPath)} because no machine files were found.`,
       );
     } else {
-      console.log('[app] No machine files found.');
+      console.log("[app] No machine files found.");
     }
     return;
   }
 
   /** Create a single ts-morph Project for all files */
   const project = new Project({
-    tsConfigFilePath: resolve(cwd, 'tsconfig.json'),
+    tsConfigFilePath: resolve(cwd, "tsconfig.json"),
     skipAddingFilesFromTsConfig: true,
   });
 
@@ -121,7 +121,7 @@ export const generator = async (options?: {
         `[app] Removed ${relative(cwd, outputPath)} because no valid machine entries were generated.`,
       );
     } else {
-      console.log('[app] No valid machine entries were found.');
+      console.log("[app] No valid machine entries were found.");
     }
     return;
   }
@@ -138,20 +138,20 @@ export const generator = async (options?: {
     `declare module '@bemedev/app' {`,
     `  interface Register {`,
     ``,
-    entries.join('\n\n'),
+    entries.join("\n\n"),
     ``,
     `  }`,
     `}`,
     ``,
     `export {};`,
     ``,
-  ].join('\n');
+  ].join("\n");
 
   if (_options.dryRun) {
     return process.stdout.write(content);
   }
 
-  return writeFile(outputPath, content, 'utf-8').then(() => {
+  return writeFile(outputPath, content, "utf-8").then(() => {
     console.log(
       `[app] Written: ${relative(cwd, outputPath)} (${entries.length} machines)`,
     );

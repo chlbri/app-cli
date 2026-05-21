@@ -1,5 +1,24 @@
 ## CHANGELOG
 
+<details>
+<summary>
+
+## **[0.2.2] - 21/05/2026** => _22:24_
+
+</summary>
+
+- Update maintenance scripts: replace `upgrade:safe` with `upgrade:fast`
+  and route `ci:admin` to the new flow
+- Refactor generator imports to use `@bemedev/app/utils` and normalize
+  string literals
+- Update development dependencies (`@bemedev/app`, `@bemedev/app-ts`,
+  Vitest, Oxlint, Oxfmt, Rolldown, and related tooling)
+- <u>Test coverage **_100%_**</u>
+
+</details>
+
+<br/>
+
 <br/>
 <br/>
 
