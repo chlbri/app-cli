@@ -53,28 +53,28 @@ pnpm add rxjs
 Pour RxJS 7.2 et plus récent :
 
 ```javascript
-import { range, filter, map } from 'rxjs';
+import { range, filter, map } from "rxjs";
 
 range(1, 200)
   .pipe(
-    filter(x => x % 2 === 1),
-    map(x => x + x),
+    filter((x) => x % 2 === 1),
+    map((x) => x + x),
   )
-  .subscribe(x => console.log(x));
+  .subscribe((x) => console.log(x));
 ```
 
 Pour RxJS versions antérieures à 7.2 :
 
 ```javascript
-import { range } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { range } from "rxjs";
+import { filter, map } from "rxjs/operators";
 
 range(1, 200)
   .pipe(
-    filter(x => x % 2 === 1),
-    map(x => x + x),
+    filter((x) => x % 2 === 1),
+    map((x) => x + x),
   )
-  .subscribe(x => console.log(x));
+  .subscribe((x) => console.log(x));
 ```
 
 ### Via CDN
@@ -89,10 +89,10 @@ const { filter, map } = rxjs.operators;
 
 range(1, 200)
   .pipe(
-    filter(x => x % 2 === 1),
-    map(x => x + x),
+    filter((x) => x % 2 === 1),
+    map((x) => x + x),
   )
-  .subscribe(x => console.log(x));
+  .subscribe((x) => console.log(x));
 ```
 
 ## Concepts fondamentaux
@@ -103,9 +103,9 @@ Un Observable représente un flux de données qui peut émettre des valeurs au
 fil du temps :
 
 ```javascript
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
-const observable = new Observable(subscriber => {
+const observable = new Observable((subscriber) => {
   subscriber.next(1);
   subscriber.next(2);
   subscriber.next(3);
@@ -116,8 +116,8 @@ const observable = new Observable(subscriber => {
 });
 
 observable.subscribe({
-  next: value => console.log(value),
-  complete: () => console.log('Complete!'),
+  next: (value) => console.log(value),
+  complete: () => console.log("Complete!"),
 });
 ```
 
@@ -127,16 +127,16 @@ Les opérateurs permettent de transformer, filtrer et composer des
 Observables :
 
 ```javascript
-import { of } from 'rxjs';
-import { map, filter, take } from 'rxjs';
+import { of } from "rxjs";
+import { map, filter, take } from "rxjs";
 
 of(1, 2, 3, 4, 5)
   .pipe(
-    filter(n => n % 2 === 0),
-    map(n => n * 2),
+    filter((n) => n % 2 === 0),
+    map((n) => n * 2),
     take(2),
   )
-  .subscribe(x => console.log(x)); // 4, 8
+  .subscribe((x) => console.log(x)); // 4, 8
 ```
 
 ### Subject
@@ -144,16 +144,16 @@ of(1, 2, 3, 4, 5)
 Un Subject est un type spécial d'Observable qui permet le multicasting :
 
 ```javascript
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 
 const subject = new Subject();
 
 subject.subscribe({
-  next: value => console.log(`Observer A: ${value}`),
+  next: (value) => console.log(`Observer A: ${value}`),
 });
 
 subject.subscribe({
-  next: value => console.log(`Observer B: ${value}`),
+  next: (value) => console.log(`Observer B: ${value}`),
 });
 
 subject.next(1);
@@ -170,7 +170,7 @@ subject.next(2);
 - `timer()` : Émet après un délai, puis optionnellement à intervalles
 
 ```javascript
-import { of, from, interval, timer } from 'rxjs';
+import { of, from, interval, timer } from "rxjs";
 
 // Exemples
 of(1, 2, 3);
@@ -187,12 +187,12 @@ timer(2000, 1000); // Première émission après 2s, puis chaque 1s
 - `concatMap()` : Concatène séquentiellement les Observables
 
 ```javascript
-import { of } from 'rxjs';
-import { map, switchMap } from 'rxjs';
+import { of } from "rxjs";
+import { map, switchMap } from "rxjs";
 
-of(1, 2, 3).pipe(map(x => x * 2));
+of(1, 2, 3).pipe(map((x) => x * 2));
 
-of('user1', 'user2').pipe(switchMap(userId => fetchUser(userId)));
+of("user1", "user2").pipe(switchMap((userId) => fetchUser(userId)));
 ```
 
 ### Opérateurs de filtrage
@@ -203,11 +203,11 @@ of('user1', 'user2').pipe(switchMap(userId => fetchUser(userId)));
 - `distinctUntilChanged()` : Ignore les valeurs consécutives identiques
 
 ```javascript
-import { range } from 'rxjs';
-import { filter, take, skip } from 'rxjs';
+import { range } from "rxjs";
+import { filter, take, skip } from "rxjs";
 
 range(1, 10).pipe(
-  filter(x => x % 2 === 0),
+  filter((x) => x % 2 === 0),
   skip(1),
   take(2),
 );
@@ -216,18 +216,18 @@ range(1, 10).pipe(
 ## Gestion des erreurs
 
 ```javascript
-import { of, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs';
+import { of, throwError } from "rxjs";
+import { catchError, retry } from "rxjs";
 
 of(1, 2, 3).pipe(
-  map(x => {
-    if (x === 2) throw new Error('Error!');
+  map((x) => {
+    if (x === 2) throw new Error("Error!");
     return x;
   }),
   retry(3),
-  catchError(err => {
-    console.error('Caught error:', err);
-    return of('Error handled');
+  catchError((err) => {
+    console.error("Caught error:", err);
+    return of("Error handled");
   }),
 );
 ```
@@ -237,47 +237,47 @@ of(1, 2, 3).pipe(
 ### Requêtes HTTP
 
 ```javascript
-import { fromFetch } from 'rxjs/fetch';
-import { switchMap } from 'rxjs';
+import { fromFetch } from "rxjs/fetch";
+import { switchMap } from "rxjs";
 
-fromFetch('https://api.example.com/data')
-  .pipe(switchMap(response => response.json()))
-  .subscribe(data => console.log(data));
+fromFetch("https://api.example.com/data")
+  .pipe(switchMap((response) => response.json()))
+  .subscribe((data) => console.log(data));
 ```
 
 ### Gestion d'événements DOM
 
 ```javascript
-import { fromEvent } from 'rxjs';
-import { debounceTime, map } from 'rxjs';
+import { fromEvent } from "rxjs";
+import { debounceTime, map } from "rxjs";
 
-const input = document.getElementById('search');
+const input = document.getElementById("search");
 
-fromEvent(input, 'input')
+fromEvent(input, "input")
   .pipe(
     debounceTime(300),
-    map(event => event.target.value),
+    map((event) => event.target.value),
   )
-  .subscribe(searchTerm => {
+  .subscribe((searchTerm) => {
     // Effectuer la recherche
-    console.log('Searching for:', searchTerm);
+    console.log("Searching for:", searchTerm);
   });
 ```
 
 ### WebSocket
 
 ```javascript
-import { webSocket } from 'rxjs/webSocket';
+import { webSocket } from "rxjs/webSocket";
 
-const socket$ = webSocket('ws://localhost:8081');
+const socket$ = webSocket("ws://localhost:8081");
 
 socket$.subscribe(
-  msg => console.log('Message reçu:', msg),
-  err => console.log(err),
-  () => console.log('Connexion fermée'),
+  (msg) => console.log("Message reçu:", msg),
+  (err) => console.log(err),
+  () => console.log("Connexion fermée"),
 );
 
-socket$.next({ message: 'Hello Server!' });
+socket$.next({ message: "Hello Server!" });
 ```
 
 ## Intégration avec des frameworks
@@ -287,16 +287,16 @@ socket$.next({ message: 'Hello Server!' });
 RxJS est intégré nativement dans Angular :
 
 ```typescript
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class DataService {
   constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
-    return this.http.get('/api/data');
+    return this.http.get("/api/data");
   }
 }
 ```
@@ -304,8 +304,8 @@ export class DataService {
 ### React
 
 ```javascript
-import { useEffect, useState } from 'react';
-import { interval } from 'rxjs';
+import { useEffect, useState } from "react";
+import { interval } from "rxjs";
 
 function Timer() {
   const [count, setCount] = useState(0);
@@ -334,16 +334,16 @@ subscription.unsubscribe();
 
 ```javascript
 // ❌ Éviter
-observable.subscribe(value => {
-  anotherObservable.subscribe(otherValue => {
+observable.subscribe((value) => {
+  anotherObservable.subscribe((otherValue) => {
     // Callback hell
   });
 });
 
 // ✅ Préférer
 observable
-  .pipe(switchMap(value => anotherObservable))
-  .subscribe(otherValue => {
+  .pipe(switchMap((value) => anotherObservable))
+  .subscribe((otherValue) => {
     // Code plus propre
   });
 ```
@@ -353,8 +353,8 @@ observable
 ```javascript
 observable
   .pipe(
-    catchError(error => {
-      console.error('Error occurred:', error);
+    catchError((error) => {
+      console.error("Error occurred:", error);
       return of(defaultValue);
     }),
   )

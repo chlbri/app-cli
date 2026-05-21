@@ -137,6 +137,9 @@ yarn.lock
 #Apple
 **/.DS_Store
 
+#pnpm
+.pnpm-store
+
 #my
 build.npm.ts
 build.npm.js

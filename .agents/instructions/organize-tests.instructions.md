@@ -37,11 +37,11 @@ test('#02 => status becomes "available" after start with a callback', () => {
   const scheduler = createScheduler();
   const counter = makeCounter();
   scheduler.start(counter.task); // action
-  expect(scheduler.status).toBe('available'); // assertion 1
+  expect(scheduler.status).toBe("available"); // assertion 1
   expect(counter.count).toBe(1); // assertion 2
   expect(scheduler.performeds).toBe(1); // assertion 3
   scheduler.start(counter.task); // action (second call)
-  expect(scheduler.status).toBe('available'); // assertion 4
+  expect(scheduler.status).toBe("available"); // assertion 4
   expect(counter.count).toBe(1); // assertion 5
   expect(scheduler.performeds).toBe(1); // assertion 6
 });
@@ -54,33 +54,32 @@ body. The call `scheduler.start(counter.task)` is a distinct action → its
 own `test`. Each `expect` is also its own `test`.
 
 ```ts
-describe('#02 => with a sync callback', () => {
+describe("#02 => with a sync callback", () => {
   const scheduler = createScheduler(); // shared — stays in describe body
   const counter = makeCounter(); // shared — stays in describe body
 
-  test('#00 => initial counter.count is 0', () =>
+  test("#00 => initial counter.count is 0", () =>
     expect(counter.count).toBe(0));
 
-  test('#01 => start with a callback', () => {
+  test("#01 => start with a callback", () => {
     scheduler.start(counter.task);
   });
 
   test('#02 => status is "available"', () =>
-    expect(scheduler.status).toBe('available'));
-  test('#03 => counter.count is 1', () => expect(counter.count).toBe(1));
-  test('#04 => performeds is 1', () =>
-    expect(scheduler.performeds).toBe(1));
+    expect(scheduler.status).toBe("available"));
+  test("#03 => counter.count is 1", () => expect(counter.count).toBe(1));
+  test("#04 => performeds is 1", () => expect(scheduler.performeds).toBe(1));
 
-  describe('#05 => second call is idempotent', () => {
-    test('#01 => restart', () => {
+  describe("#05 => second call is idempotent", () => {
+    test("#01 => restart", () => {
       scheduler.start(counter.task);
     });
 
     test('#02 => status remains "available"', () =>
-      expect(scheduler.status).toBe('available'));
-    test('#03 => counter.count is still 1', () =>
+      expect(scheduler.status).toBe("available"));
+    test("#03 => counter.count is still 1", () =>
       expect(counter.count).toBe(1));
-    test('#04 => performeds is still 1', () =>
+    test("#04 => performeds is still 1", () =>
       expect(scheduler.performeds).toBe(1));
   });
 });
@@ -91,8 +90,8 @@ describe('#02 => with a sync callback', () => {
 ### ❌ Bad – multiple `expect` calls in one test
 
 ```ts
-test('#01 => returns an object', () => {
-  expect(typeof scheduler).toBe('object');
+test("#01 => returns an object", () => {
+  expect(typeof scheduler).toBe("object");
   expect(scheduler).toBeDefined();
 });
 ```
@@ -100,10 +99,9 @@ test('#01 => returns an object', () => {
 ### ✅ Good – one `expect` per test
 
 ```ts
-describe('#01 => returns an object', () => {
-  test('#01 => is an object', () =>
-    expect(typeof scheduler).toBe('object'));
-  test('#02 => is defined', () => expect(scheduler).toBeDefined());
+describe("#01 => returns an object", () => {
+  test("#01 => is an object", () => expect(typeof scheduler).toBe("object"));
+  test("#02 => is defined", () => expect(scheduler).toBeDefined());
 });
 ```
 
@@ -116,14 +114,14 @@ step, etc.).
 Each `test` inside it represents **one observable outcome** of that action.
 
 ```ts
-describe('#02 => start', () => {
+describe("#02 => start", () => {
   test('#01 => status is "initialized" after start (no callback, empty queue)', () => {
     const scheduler = createScheduler();
     scheduler.start();
-    expect(scheduler.status).toBe('initialized');
+    expect(scheduler.status).toBe("initialized");
   });
 
-  test('#02 => performeds is 0 after start (no callback)', () => {
+  test("#02 => performeds is 0 after start (no callback)", () => {
     const scheduler = createScheduler();
     scheduler.start();
     expect(scheduler.performeds).toBe(0);
@@ -159,9 +157,9 @@ If it is > 75 → multi-line; always put a blank line before and after it.
 
 ```ts
 // 56 chars — single-line ✓
-test('#01 => is defined', () => expect(scheduler).toBeDefined());
+test("#01 => is defined", () => expect(scheduler).toBeDefined());
 // 58 chars — single-line ✓
-test('#02 => performeds is 0', () => expect(scheduler.performeds).toBe(0));
+test("#02 => performeds is 0", () => expect(scheduler.performeds).toBe(0));
 ```
 
 ### ✅ Tests that exceed 75 chars — Prettier wraps, treat as multi-line
@@ -170,10 +168,10 @@ test('#02 => performeds is 0', () => expect(scheduler.performeds).toBe(0));
 // 79 chars on one line → Prettier wraps → blank line required
 test('#01 => status is "available"', () => {
   // And no need direct return, make it multi-line for readability
-  expect(scheduler.status).toBe('available');
+  expect(scheduler.status).toBe("available");
 });
 
-test('#02 => counter.count is 1', () => expect(counter.count).toBe(1));
+test("#02 => counter.count is 1", () => expect(counter.count).toBe(1));
 ```
 
 ### ✅ Longer tests (multi-line body) — one blank line
@@ -182,10 +180,10 @@ test('#02 => counter.count is 1', () => expect(counter.count).toBe(1));
 test('#01 => status is "initialized" after start', () => {
   const scheduler = createScheduler();
   scheduler.start();
-  expect(scheduler.status).toBe('initialized');
+  expect(scheduler.status).toBe("initialized");
 });
 
-test('#02 => performeds is 0 after start', () => {
+test("#02 => performeds is 0 after start", () => {
   const scheduler = createScheduler();
   scheduler.start();
   expect(scheduler.performeds).toBe(0);
@@ -196,18 +194,18 @@ test('#02 => performeds is 0 after start', () => {
 
 ```ts
 // Both ≤ 75 chars → no blank line between them
-test('#01 => is an object', () => expect(typeof scheduler).toBe('object'));
-test('#02 => is defined', () => expect(scheduler).toBeDefined());
+test("#01 => is an object", () => expect(typeof scheduler).toBe("object"));
+test("#02 => is defined", () => expect(scheduler).toBeDefined());
 
 // Next test is multi-line → blank line before it
 test('#03 => status is "initialized" after start', () => {
   const scheduler = createScheduler();
   scheduler.start();
-  expect(scheduler.status).toBe('initialized');
+  expect(scheduler.status).toBe("initialized");
 });
 
 // Also multi-line → blank line before it
-test('#04 => performeds is 0 after start', () => {
+test("#04 => performeds is 0 after start", () => {
   const scheduler = createScheduler();
   scheduler.start();
   expect(scheduler.performeds).toBe(0);
@@ -237,21 +235,21 @@ assertion that verifies the initial state before any action is performed
 ### Before
 
 ```ts
-describe('#01 => createScheduler', () => {
+describe("#01 => createScheduler", () => {
   const { acceptation } = createTests(createScheduler);
-  describe('#00 => Acceptation', acceptation);
+  describe("#00 => Acceptation", acceptation);
   const scheduler = createScheduler();
 
-  test('#01 => returns an object', () => {
-    expect(typeof scheduler).toBe('object');
+  test("#01 => returns an object", () => {
+    expect(typeof scheduler).toBe("object");
     expect(scheduler).toBeDefined();
   });
 
   test('#02 => initial status is "idle"', () => {
-    expect(scheduler.status).toBe('idle');
+    expect(scheduler.status).toBe("idle");
   });
 
-  test('#03 => initial performeds is 0', () => {
+  test("#03 => initial performeds is 0", () => {
     expect(scheduler.performeds).toBe(0);
   });
 });
@@ -260,20 +258,19 @@ describe('#01 => createScheduler', () => {
 ### After
 
 ```ts
-describe('#01 => createScheduler', () => {
+describe("#01 => createScheduler", () => {
   const { acceptation } = createTests(createScheduler);
-  describe('#00 => Acceptation', acceptation);
+  describe("#00 => Acceptation", acceptation);
   const scheduler = createScheduler();
 
-  describe('#01 => returns an object', () => {
-    test('#01 => is an object', () =>
-      expect(typeof scheduler).toBe('object'));
-    test('#02 => is defined', () => expect(scheduler).toBeDefined());
+  describe("#01 => returns an object", () => {
+    test("#01 => is an object", () => expect(typeof scheduler).toBe("object"));
+    test("#02 => is defined", () => expect(scheduler).toBeDefined());
   });
 
   test('#02 => initial status is "idle"', () =>
-    expect(scheduler.status).toBe('idle'));
-  test('#03 => initial performeds is 0', () =>
+    expect(scheduler.status).toBe("idle"));
+  test("#03 => initial performeds is 0", () =>
     expect(scheduler.performeds).toBe(0));
 });
 ```
@@ -319,15 +316,15 @@ function.
 ### ❌ Bad – unnecessary arrow wrapper
 
 ```ts
-test('#02 => first stop', () => scheduler.stop());
-test('#03 => second stop', () => scheduler.stop());
+test("#02 => first stop", () => scheduler.stop());
+test("#03 => second stop", () => scheduler.stop());
 ```
 
 ### ✅ Good – direct method reference
 
 ```ts
-test('#02 => first stop', scheduler.stop);
-test('#03 => second stop', scheduler.stop);
+test("#02 => first stop", scheduler.stop);
+test("#03 => second stop", scheduler.stop);
 ```
 
 This applies only to strictly zero-param methods: `scheduler.stop`,
